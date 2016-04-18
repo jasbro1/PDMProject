@@ -9,6 +9,7 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
+
 /**
  * Create a Submission
  */
@@ -80,7 +81,8 @@ exports.delete = function(req, res) {
 /**
  * List of Submissions
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
+
   Submission.find().sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
     if (err) {
       return res.status(400).send({
@@ -91,6 +93,23 @@ exports.list = function(req, res) {
     }
   });
 };
+
+/**
+ * List of Submissions
+ */
+exports.myList = function(req, res) {
+
+  Submission.find({ 'user': req.user.id }).sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(submissions);
+    }
+  });
+};
+
 
 /**
  * Submission middleware

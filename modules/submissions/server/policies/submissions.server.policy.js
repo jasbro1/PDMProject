@@ -20,6 +20,12 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/submissions/:submissionId',
       permissions: '*'
+    }, {
+      resources: '/api/submissions/mySubmissions',
+      permissions: ['*']
+    }, {
+      resources: '/api/submissions/mySubmissions/:submissionId',
+      permissions: ['*']
     }]
   }, {
     roles: ['user'],
@@ -28,6 +34,12 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/submissions/:submissionId',
+      permissions: ['get']
+    }, {
+      resources: '/api/submissions/mySubmissions',
+      permissions: ['get', 'post']
+    }, {
+      resources: '/api/submissions/mySubmissions/:submissionId',
       permissions: ['get']
     }]
   }, {

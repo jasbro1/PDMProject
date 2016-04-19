@@ -1,27 +1,55 @@
 <section>
   <div class="page-header">
-    <h1>Submissions</h1>
+
+    <!-- Search box -->
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 pull-right">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search for..." data-ng-model="searchTerm">
+
+        <div class="input-group-btn" ng-class="{open : vm.sortMenuOpen}">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="vm.toggleSortMenu()">{{vm.sortBtnText}} <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#" ng-click="vm.sortBy('date') ; vm.toggleSortMenu()"> Sort by Date</a></li>
+            <li><a href="#" ng-click="vm.sortBy('title') ; vm.toggleSortMenu()">Sort by Title</a></li>
+            <li><a href="#" ng-click="vm.sortBy('user') ; vm.toggleSortMenu()">Sort by User</a></li>
+            <li><a href="#" ng-click="vm.sortBy('category') ; vm.toggleSortMenu()">Sort by Category</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
   </div>
-  <div class="list-group">
-    <a data-ng-repeat="submission in vm.submissions"
-       data-ui-sref="submissions.view({ submissionId: submission._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span data-ng-bind="submission.created | date:'mediumDate'"></span>
-        by
-        <span data-ng-if="submission.user" data-ng-bind="submission.user.displayName"></span>
-        <span data-ng-if="!submission.user">Deleted User</span>
-      </small>
-      <small class="list-group-item-text">
-        <br>
-        Category:
-        <span data-ng-bind="submission.categories"></span>
-      </small>
-      <h4 class="list-group-item-heading" data-ng-bind="submission.title"></h4>
-    </a>
+
+  <!-- Submission list -->
+  <div>
+    <div class="panel panel-info" data-ui-sref="submissions.view({ submissionId: submission._id })"
+         data-ng-repeat="submission in vm.submissions | orderBy:vm.sortTerm:vm.sortReverse |  filter: searchTerm">
+
+      <!-- Post heading section -->
+      <div class="panel-heading">
+        <h4 data-ng-bind="submission.title"></h4>
+        <span class="label label-primary pull-right" data-ng-bind="submission.categories"></span>
+        <small>
+          By
+          <span data-ng-if="submission.user" data-ng-bind="submission.user.displayName"></span>
+          <span data-ng-if="!submission.user">Deleted User</span>
+          on
+          <span data-ng-bind="submission.created | date:'mediumDate'"></span>
+        </small>
+      </div>
+
+      <!-- Post body section -->
+      <div class="panel-body" style="background-color: white">
+        <p class="lead" data-ng-bind="submission.body"></p>
+      </div>
+
+    </div>
   </div>
+
   <div class="alert alert-warning text-center" data-ng-if="vm.submissions.$resolved && !vm.submissions.length">
     No Submissions yet, why don't you <a data-ui-sref="submissions.create">create one</a>?
   </div>
+
 </section>

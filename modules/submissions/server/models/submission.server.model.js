@@ -7,27 +7,6 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Improvement Schema
- * Each submission must be tied to a user
- */
-
-/*
-var ImprovementSchema = new Schema({
-  body: {
-    type: String,
-    default: '',
-    required: 'Please fill in description of improvement',
-    trim: true
-  },
-  likes : Number,
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
-  }
-});
- */
-
-/**
  * Submission Schema
  * Each submission must be tied to a user
  */
@@ -51,6 +30,11 @@ var SubmissionSchema = new Schema({
     required: 'Please include a catagory with your submission',
     trim: true
   },
+
+  /**
+   * TODO: Remove comments from the submission schema and just add a
+   * TODO: submissionID to each usercomment
+   */
 
   comments: [{
     type: Schema.ObjectId,

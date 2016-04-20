@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  /**
+   * TODO: Clean up this controller and remove unnecessary functions
+   */
+
   // Improvements controller
   angular
     .module('improvements')

@@ -61,10 +61,11 @@
       .state('submissions.createImprovement', {
         url: '/:submissionId/addImprovement',
         templateUrl: 'modules/improvements/client/views/form-improvement.client.view.html',
-        controller: 'ImprovementsController',
+        controller: 'ImprovementFromSubCrtlr',
         controllerAs: 'vm',
         resolve: {
-          submissionResolve: getSubmission
+          submissionResolve: getSubmission,
+          improvementResolve: newImprovement
         },
         data: {
           pageTitle: 'Add Improvement'
@@ -97,4 +98,11 @@
   function newSubmission(SubmissionsService) {
     return new SubmissionsService();
   }
+  
+  newImprovement.$inject = ['ImprovementsService'];
+  
+  function newImprovement(ImprovementsService) {
+    return new ImprovementsService();
+  }
+  
 })();

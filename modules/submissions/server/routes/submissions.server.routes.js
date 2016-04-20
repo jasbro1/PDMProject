@@ -27,12 +27,7 @@ module.exports = function(app) {
     .get(submissions.read)
     .put(submissions.update)
     .delete(submissions.delete);
-
-  app.route('/api/submissions/:submissionId/createImprovement').all(submissionsPolicy.isAllowed)
-    .get(improvements.read)
-    .put(improvements.update)
-    .delete(improvements.delete);
-
+  
   // Finish by binding the Submission middleware
   app.param('submissionId', submissions.submissionByID);
 };

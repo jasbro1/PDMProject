@@ -16,7 +16,7 @@ var ImprovementSchema = new Schema({
     required: 'Please fill Improvement body',
     trim: true
   },
-  submissions: {
+  submission: {
     type: Schema.ObjectId,
     ref: 'Submission'
   },

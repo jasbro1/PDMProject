@@ -32,6 +32,12 @@
         return false;
       }
 
+      var improvementBody = vm.improvement.body;
+      if(improvementBody){
+        // TODO: Do something with the improvement body to pass to server side?
+      }
+      console.log('------------------------ Client: '+improvementBody);
+
       // TODO: move create/update logic to service
       if (vm.submission._id) {
         vm.submission.$update(successCallback, errorCallback);
@@ -40,6 +46,10 @@
       }
 
       function successCallback(res) {
+        if(improvementBody)
+        {
+          // TODO: Do something with the improvement body to pass to server side?
+        }
         $state.go('submissions.view', {
           submissionId: res._id
         });

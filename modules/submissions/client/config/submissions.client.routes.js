@@ -58,6 +58,18 @@
           pageTitle: 'Edit Submission {{ submissionResolve.name }}'
         }
       })
+      .state('submissions.createImprovement', {
+        url: '/:submissionId/addImprovement',
+        templateUrl: 'modules/improvements/client/views/form-improvement.client.view.html',
+        controller: 'ImprovementsController',
+        controllerAs: 'vm',
+        resolve: {
+          submissionResolve: getSubmission
+        },
+        data: {
+          pageTitle: 'Add Improvement'
+        }
+      })
       .state('submissions.view', {
         url: '/:submissionId',
         templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',

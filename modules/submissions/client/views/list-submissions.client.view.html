@@ -9,7 +9,7 @@
         <div class="input-group-btn" ng-class="{open : vm.sortMenuOpen}">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="vm.toggleSortMenu()">{{vm.sortBtnText}} <span class="caret"></span></button>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#" ng-click="vm.sortBy('date') ; vm.toggleSortMenu()"> Sort by Date</a></li>
+            <li><a href="#" ng-click="vm.sortBy('created') ; vm.toggleSortMenu()"> Sort by Date</a></li>
             <li><a href="#" ng-click="vm.sortBy('title') ; vm.toggleSortMenu()">Sort by Title</a></li>
             <li><a href="#" ng-click="vm.sortBy('user') ; vm.toggleSortMenu()">Sort by User</a></li>
             <li><a href="#" ng-click="vm.sortBy('category') ; vm.toggleSortMenu()">Sort by Category</a></li>

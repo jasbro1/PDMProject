@@ -2,6 +2,30 @@
   <div class="page-header">
     <h4>Improvements</h4>
   </div>
+
+  <!-- Search box -->
+  <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 pull-right">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." data-ng-model="searchTerm">
+
+      <div class="input-group-btn" ng-class="{open : vm.sortMenuOpen}">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="vm.toggleSortMenu()">{{vm.sortBtnText}} <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#" ng-click="vm.sortBy('created') ; vm.toggleSortMenu()"> Sort by Date</a></li>
+          <li><a href="#" ng-click="vm.sortBy('user') ; vm.toggleSortMenu()">Sort by User</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  <br>
+
+  <!-- Spacing -->
+  <div class="clearfix"></div>
+  </div>
+  <br>
+
+  <!-- Improvements List -->
   <div class="list-group">
     <a data-ng-repeat="improvement in vm.improvements"
        data-ui-sref="improvements.view({ improvementId: improvement._id })"
@@ -15,8 +39,5 @@
       </small>
       <h6 class="list-group-item-heading" data-ng-bind="improvement.body"></h6>
     </a>
-  </div>
-  <div class="alert alert-warning text-center" data-ng-if="vm.improvements.$resolved && !vm.improvements.length">
-    No Improvements yet, why don't you <a data-ui-sref="improvements.create">create one</a>?
   </div>
 </section>

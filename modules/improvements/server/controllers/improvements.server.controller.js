@@ -16,6 +16,14 @@ exports.create = function(req, res) {
   var improvement = new Improvement(req.body);
   improvement.user = req.user;
 
+  // Get the submissionID from the URL
+  var headers = req.headers.referer;
+  var headerArray = headers.split('/');
+  var submissionID = headerArray[4];
+
+  //Save submissionID to the improvement
+  improvement.submission = submissionID;
+
   improvement.save(function(err) {
     if (err) {
       return res.status(400).send({

@@ -50,6 +50,8 @@ exports.update = function(req, res) {
 
   submission = _.extend(submission , req.body);
 
+  console.log('------------------------ Server: '+req.improvementBody);
+
   submission.save(function(err) {
     if (err) {
       return res.status(400).send({

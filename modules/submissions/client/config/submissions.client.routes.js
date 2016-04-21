@@ -58,6 +58,19 @@
           pageTitle: 'Edit Submission {{ submissionResolve.name }}'
         }
       })
+      .state('submissions.createImprovement', {
+        url: '/:submissionId/addImprovement',
+        templateUrl: 'modules/improvements/client/views/form-improvement.client.view.html',
+        controller: 'ImprovementFromSubCrtlr',
+        controllerAs: 'vm',
+        resolve: {
+          submissionResolve: getSubmission,
+          improvementResolve: newImprovement
+        },
+        data: {
+          pageTitle: 'Add Improvement'
+        }
+      })
       .state('submissions.view', {
         url: '/:submissionId',
         templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
@@ -85,4 +98,11 @@
   function newSubmission(SubmissionsService) {
     return new SubmissionsService();
   }
+  
+  newImprovement.$inject = ['ImprovementsService'];
+  
+  function newImprovement(ImprovementsService) {
+    return new ImprovementsService();
+  }
+  
 })();

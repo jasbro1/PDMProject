@@ -1,39 +1,39 @@
 .content {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 .undecorated-link:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 [ng\:cloak],
 [ng-cloak],
 [x-ng-cloak],
 .ng-cloak,
 .x-ng-cloak {
-  display: none !important;
+    display: none !important;
 }
 .header-profile-image {
-  opacity: 0.8;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  margin-right: 5px;
+    opacity: 0.8;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 .open .header-profile-image,
 a:hover .header-profile-image {
-  opacity: 1;
+    opacity: 1;
 }
 .user-header-dropdown-toggle {
-  padding-top: 11px !important;
-  padding-bottom: 11px !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
 }
 .error-text {
-  display: none;
+    display: none;
 }
 .has-error .help-block.error-text {
-  display: block;
+    display: block;
 }
 .has-error .help-inline.error-text {
-  display: inline;
+    display: inline;
 }
 
 /* Home page styles */
@@ -64,4 +64,16 @@ a:hover .header-profile-image {
 footer {
     text-align: center;
     color: #868686;
+}
+
+textarea {
+    height: 1em;
+    max-width: 40em;
+    width: 50%;
+    padding: 3px;
+    transition: all 0.5s ease;
+}
+
+textarea:focus {
+    height: 8em;
 }

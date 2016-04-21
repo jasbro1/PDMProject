@@ -5,16 +5,6 @@
   <div>
     <p data-ng-bind="vm.submission.body"></p>
   </div>
-  <div class="pull-right"
-       data-ng-show="vm.submission.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       data-ui-sref="submissions.edit({ submissionId: vm.submission._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
-  </div>
   <small>
     <em class="text-muted">
       Posted on
@@ -31,4 +21,16 @@
     <span data-ng-bind="vm.submission.categories"></span>
   </small>
   <p class="lead" data-ng-bind="vm.submission.content"></p>
+  <div class="pull-right"
+       data-ng-show="vm.submission.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="submissions.edit({ submissionId: vm.submission._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <button ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
+          data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
 </section>

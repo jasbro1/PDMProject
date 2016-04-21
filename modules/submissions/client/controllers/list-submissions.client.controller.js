@@ -14,7 +14,7 @@
         vm.submissions = SubmissionsService.query();
 
 
-        vm.sortTerm = 'date'; // Sort by date by default
+        vm.sortTerm = 'created'; // Sort by date by default
         vm.sortBtnText = 'Sort by Date'; // The value to display in the sort button
         vm.sortReverse = false; // Sort in ascending order by default
         vm.sortMenuOpen = false; // The sort menu starts off closed by default
@@ -28,8 +28,8 @@
                     vm.sortTerm = 'title';
                     vm.sortBtnText = 'Sort by Title';
                     break;
-                case 'date':
-                    vm.sortTerm = 'date';
+                case 'created':
+                    vm.sortTerm = 'created';
                     vm.sortBtnText = 'Sort by Date';
                     break;
                 case 'user':
@@ -41,7 +41,7 @@
                     vm.sortBtnText = 'Sort by Category';
                     break;
                 default:
-                    vm.sortTerm = 'date';
+                    vm.sortTerm = 'created';
                     vm.sortBtnText = 'Sort by Date';
                     break;
             }

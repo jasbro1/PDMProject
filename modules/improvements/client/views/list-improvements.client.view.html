@@ -28,15 +28,16 @@
     <a data-ng-repeat="improvement in vm.improvements | orderBy:vm.sortTerm:vm.sortReverse |  filter: searchTerm"
        class="list-group-item">
       <div class="container-fluid">
-        <div class="pull-left">
-          <br><span class="likes" data-ng-bind="improvement.likes"></span>
-        </div>
-
-        <div class="col-xs-2 col-md-1">
+        <div class="col-xs-1">
           <button type="button" class="btn btn-group-xs; glyphicon glyphicon-chevron-up" ng-click="vm.incrementLikes(improvement)"></button>
           <button type="button" class="btn btn-group-xs; glyphicon glyphicon-chevron-down" ng-click="vm.decrementLikes(improvement)"></button>
         </div>
-        <div class="col-xs-6 col-md-7"
+        <div class="col-xs-1">
+          <div class="pull-left">
+            <br><span class="likes" data-ng-bind="improvement.likes"></span>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-7 col-xs-offset-1"
              data-ui-sref="improvements.view({ improvementId: improvement._id })">
           <h4 class="list-group-item-heading" data-ng-bind="improvement.body"></h4>
           <small>

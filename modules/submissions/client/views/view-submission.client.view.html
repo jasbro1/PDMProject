@@ -31,9 +31,11 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-  <a ui-sref-active="active"
-    ui-sref="submissions.listImprovements">Improvements</a>
-  <br><br>
   <button ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
           data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
+  <br><br>
+
+  <div class="row">
+    <div ui-view="subImprovements"></div>
+  </div>
 </section>

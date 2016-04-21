@@ -82,9 +82,18 @@
       })
       .state('submissions.view', {
         url: '/:submissionId',
-        templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
-        controller: 'SubmissionsController',
-        controllerAs: 'vm',
+        views: {
+          '': {
+            templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
+            controller: 'SubmissionsController',
+            controllerAs: 'vm'
+          },
+          'subImprovements@submissions.view': {
+            templateUrl: 'modules/improvements/client/views/list-improvements.client.view.html',
+            controller: 'ImprovementsListController',
+            controllerAs: 'vm'
+          }
+        },
         resolve: {
           submissionResolve: getSubmission
         },

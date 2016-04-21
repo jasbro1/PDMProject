@@ -5,9 +5,9 @@
     .module('improvements')
     .controller('ImprovementsListController', ImprovementsListController);
 
-  ImprovementsListController.$inject = ['ImprovementsService'];
+  ImprovementsListController.$inject = ['$state', 'ImprovementsService'];
 
-  function ImprovementsListController(ImprovementsService) {
+  function ImprovementsListController($state, ImprovementsService) {
     var vm = this;
 
     vm.improvements = ImprovementsService.query();
@@ -39,5 +39,10 @@
     vm.toggleSortMenu = function() {
       vm.sortMenuOpen = !vm.sortMenuOpen;
     };
+
+    // Load improvements list
+    vm.load = function(){
+      $state.reload();
+    }
   }
 })();

@@ -35,6 +35,12 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
     display: inline;
 }
+.page-header {
+    padding-left: 10px;
+}
+.list-group-item{
+    padding: 3%;
+}
 
 /* Home page styles */
 #descContainer {

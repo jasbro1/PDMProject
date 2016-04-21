@@ -71,6 +71,15 @@
           pageTitle: 'Add Improvement'
         }
       })
+      .state('submissions.listImprovements', {
+        url: '/improvements',
+        templateUrl: 'modules/improvements/client/views/list-improvements.client.view.html',
+        controller: 'ImprovementsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Improvement List'
+        }
+      })
       .state('submissions.view', {
         url: '/:submissionId',
         templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
@@ -98,7 +107,15 @@
   function newSubmission(SubmissionsService) {
     return new SubmissionsService();
   }
-  
+
+  getImprovement.$inject = ['$stateParams', 'ImprovementsService'];
+
+  function getImprovement($stateParams, ImprovementsService) {
+    return ImprovementsService.get({
+      improvementId: $stateParams.improvementId
+    }).$promise;
+  }
+
   newImprovement.$inject = ['ImprovementsService'];
   
   function newImprovement(ImprovementsService) {

@@ -1,7 +1,6 @@
 <section>
   <div class="page-header">
     <h4>Improvements</h4>
-  </div>
 
   <!-- Search box -->
   <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 pull-right">
@@ -23,11 +22,10 @@
   <!-- Spacing -->
   <div class="clearfix"></div>
   </div>
-  <br>
 
   <!-- Improvements List -->
   <div class="list-group">
-    <a data-ng-repeat="improvement in vm.improvements"
+    <a data-ng-repeat="improvement in vm.improvements | orderBy:vm.sortTerm:vm.sortReverse |  filter: searchTerm"
        data-ui-sref="improvements.view({ improvementId: improvement._id })"
        class="list-group-item">
       <small class="list-group-item-text">

@@ -16,6 +16,8 @@
     vm.sortBtnText = 'Sort by Date'; // The value to display in the sort button
     vm.sortReverse = false; // Sort in ascending order by default
     vm.sortMenuOpen = false; // The sort menu starts off closed by default
+    vm.incrementLikes = incrementLikes;
+    vm.decrementLikes = decrementLikes;
 
     // The code for managing the sorting functionality
     vm.sortBy = function(inSortTerm) {
@@ -43,6 +45,25 @@
     // Load improvements list
     vm.load = function(){
       $state.reload();
+    };
+
+    function incrementLikes(improvement){
+      improvement.likes+=1;
+      improvement.$update(successCallback, errorCallback);
+    }
+
+    function decrementLikes(improvement){
+      if(improvement.likes!=0){
+        improvement.likes-=1;
+      }
+      improvement.$update(successCallback, errorCallback);
+    }
+
+    function successCallback(res) {
+    }
+
+    function errorCallback(res) {
+      vm.error = res.data.message;
     }
   }
 })();

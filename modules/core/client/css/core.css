@@ -38,8 +38,9 @@ a:hover .header-profile-image {
 .page-header {
     padding-left: 10px;
 }
-.list-group-item{
-    padding: 3%;
+.likes {
+    text-align: center;
+    font-size: 150%;
 }
 
 /* Home page styles */
@@ -57,6 +58,14 @@ a:hover .header-profile-image {
     margin: 35px;
     display: block;
     text-align: center;
+}
+.glyphicon-chevron-up {
+    font-size: 10px;
+    margin: 5px;
+}
+.glyphicon-chevron-down {
+    font-size: 10px;
+    margin: 5px;
 }
 
 .header-image{

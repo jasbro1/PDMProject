@@ -15,6 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var improvement = new Improvement(req.body);
   improvement.user = req.user;
+  improvement.likes=0;
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;

@@ -27,14 +27,14 @@ var SubmissionSchema = new Schema({
     type: String,
     enum: ['General', 'Aboriginal Studies', 'Business School', 'Health Sciences',
       'Humanities', 'Science and Engineering'],
-    required: 'Please select the category of your submission',
+    required: 'Please include a catagory with your submission',
     trim: true
   },
 
-  improvements: [{
-    type: Schema.ObjectId,
-    ref: 'Improvements'
-  }],
+  /**
+   * TODO: Remove comments from the submission schema and just add a
+   * TODO: submissionID to each usercomment
+   */
 
   comments: [{
     type: Schema.ObjectId,

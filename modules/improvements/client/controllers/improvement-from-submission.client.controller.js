@@ -1,18 +1,22 @@
+/**
+ * Created by M on 21/04/2016.
+ */
+
+/**
+ * TODO: Clean up this controller and remove unnecessary functions
+ */
+
 (function () {
   'use strict';
-
-  /**
-   * TODO: Clean up this controller and remove unnecessary functions
-   */
 
   // Improvements controller
   angular
     .module('improvements')
-    .controller('ImprovementsController', ImprovementsController);
+    .controller('ImprovementFromSubCrtlr', ImprovementFromSubCrtlr);
 
-  ImprovementsController.$inject = ['$scope', '$state', 'Authentication', 'improvementResolve'];
+  ImprovementFromSubCrtlr.$inject = ['$scope', '$state', 'Authentication', 'improvementResolve'];
 
-  function ImprovementsController ($scope, $state, Authentication, improvement) {
+  function ImprovementFromSubCrtlr ($scope, $state, Authentication, improvement) {
     var vm = this;
 
     vm.authentication = Authentication;

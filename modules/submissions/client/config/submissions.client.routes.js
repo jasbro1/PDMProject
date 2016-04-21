@@ -58,11 +58,42 @@
           pageTitle: 'Edit Submission {{ submissionResolve.name }}'
         }
       })
+      .state('submissions.createImprovement', {
+        url: '/:submissionId/addImprovement',
+        templateUrl: 'modules/improvements/client/views/form-improvement.client.view.html',
+        controller: 'ImprovementFromSubCrtlr',
+        controllerAs: 'vm',
+        resolve: {
+          submissionResolve: getSubmission,
+          improvementResolve: newImprovement
+        },
+        data: {
+          pageTitle: 'Add Improvement'
+        }
+      })
+      .state('submissions.listImprovements', {
+        url: '/improvements',
+        templateUrl: 'modules/improvements/client/views/list-improvements.client.view.html',
+        controller: 'ImprovementsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Improvement List'
+        }
+      })
       .state('submissions.view', {
         url: '/:submissionId',
-        templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
-        controller: 'SubmissionsController',
-        controllerAs: 'vm',
+        views: {
+          '': {
+            templateUrl: 'modules/submissions/client/views/view-submission.client.view.html',
+            controller: 'SubmissionsController',
+            controllerAs: 'vm'
+          },
+          'subImprovements@submissions.view': {
+            templateUrl: 'modules/improvements/client/views/list-improvements.client.view.html',
+            controller: 'ImprovementsListController',
+            controllerAs: 'vm'
+          }
+        },
         resolve: {
           submissionResolve: getSubmission
         },
@@ -85,4 +116,19 @@
   function newSubmission(SubmissionsService) {
     return new SubmissionsService();
   }
+
+  getImprovement.$inject = ['$stateParams', 'ImprovementsService'];
+
+  function getImprovement($stateParams, ImprovementsService) {
+    return ImprovementsService.get({
+      improvementId: $stateParams.improvementId
+    }).$promise;
+  }
+
+  newImprovement.$inject = ['ImprovementsService'];
+  
+  function newImprovement(ImprovementsService) {
+    return new ImprovementsService();
+  }
+  
 })();

@@ -31,8 +31,7 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.submissionForm');
         return false;
       }
-
-      // TODO: move create/update logic to service
+      
       if (vm.submission._id) {
         vm.submission.$update(successCallback, errorCallback);
       } else {

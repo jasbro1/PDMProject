@@ -15,6 +15,15 @@ var path = require('path'),
 exports.create = function(req, res) {
   var improvement = new Improvement(req.body);
   improvement.user = req.user;
+  improvement.likes=0;
+
+  // Get the submissionID from the URL
+  var headers = req.headers.referer;
+  var headerArray = headers.split('/');
+  var submissionID = headerArray[4];
+
+  //Save submissionID to the improvement
+  improvement.submission = submissionID;
 
   improvement.save(function(err) {
     if (err) {
@@ -80,8 +89,12 @@ exports.delete = function(req, res) {
 /**
  * List of Improvements
  */
-exports.list = function(req, res) { 
-  Improvement.find().sort('-created').populate('user', 'displayName').exec(function(err, improvements) {
+exports.list = function(req, res) {
+  // Get the submissionID from the URL
+  var headers = req.headers.referer;
+  var headerArray = headers.split('/');
+  var submissionID = headerArray[4];
+  Improvement.find({ 'submission': submissionID }).sort('-created').populate('user', 'displayName').exec(function(err, improvements) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

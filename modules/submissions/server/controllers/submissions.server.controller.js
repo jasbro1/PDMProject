@@ -16,6 +16,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var submission = new Submission(req.body);
   submission.user = req.user;
+  submission.likes=0;
 
   submission.save(function(err) {
     if (err) {

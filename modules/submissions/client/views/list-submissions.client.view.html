@@ -34,24 +34,50 @@
   <!-- Submission list -->
   <div>
     <div class="panel panel-info"
-         data-ui-sref="submissions.view({ submissionId: submission._id })"
          data-ng-repeat="submission in vm.submissions |
          orderBy:vm.sortTerm:vm.sortReverse |
          filter: searchTerm">
 
       <!-- Post heading section -->
-      <div class="panel-heading">
-        <h4 data-ng-bind="submission.title"></h4>
+      <div class="container-fluid">
+
+        <!-- Likes column -->
+        <div class="col-xs-2 col-md-1"
+             style="float: left; padding-right: 0; padding-left: 0;">
+          <p style="text-align: center">
+            <button type="button" class="btn btn-group-xs;
+          glyphicon glyphicon-chevron-up"
+                    ng-click="vm.incrementLikes(submission)"></button>
+          </p>
+          <p style="text-align: center">
+            <button type="button" class="btn btn-group-xs"
+                    disabled="disabled"
+                    style="padding-right: 5px; padding-left: 5px;">
+              <span data-ng-bind="submission.likes"></span>
+            </button>
+          </p>
+          <p style="text-align: center">
+            <button type="button" class="btn btn-group-xs;
+          glyphicon glyphicon-chevron-down"
+                    ng-click="vm.decrementLikes(submission)"></button>
+          </p>
+        </div>
+
+        <!-- Post heading column -->
+        <div class="panel-heading col-xs-9 col-md-10"
+             data-ui-sref="submissions.view({ submissionId: submission._id })">
+          <h4 data-ng-bind="submission.title"></h4>
         <span class="label label-primary pull-right"
               data-ng-bind="submission.categories"></span>
-        <small>
-          By
+          <small>
+            By
           <span data-ng-if="submission.user"
                 data-ng-bind="submission.user.displayName"></span>
-          <span data-ng-if="!submission.user">Deleted User</span>
-          on
-          <span data-ng-bind="submission.created | date:'mediumDate'"></span>
-        </small>
+            <span data-ng-if="!submission.user">Deleted User</span>
+            on
+            <span data-ng-bind="submission.created | date:'mediumDate'"></span>
+          </small>
+        </div>
       </div>
 
       <!-- Post body section -->

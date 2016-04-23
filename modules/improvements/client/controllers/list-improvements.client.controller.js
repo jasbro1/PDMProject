@@ -47,14 +47,22 @@
       $state.reload();
     };
 
+    // Incrementing logic
     function incrementLikes(improvement){
+      if(improvement.likes==null){
+        improvement.likes=0;
+      }
       improvement.likes+=1;
       improvement.$update(successCallback, errorCallback);
     }
 
+    // Decrementing logic
     function decrementLikes(improvement){
       if(improvement.likes!==0){
         improvement.likes-=1;
+      }
+      else if(improvement.likes==null){
+        improvement.likes=0;
       }
       improvement.$update(successCallback, errorCallback);
     }

@@ -66,6 +66,14 @@ a:hover .header-profile-image {
     font-size: 10px;
     margin: auto;
 }
+.glyphicon-chevron-edit {
+    font-size: 10px;
+    margin: auto;
+}
+.glyphicon-chevron-trash {
+    font-size: 10px;
+    margin: auto;
+}
 
 .header-image{
     background-image: url('http://international.curtin.edu.au/wp-content/uploads/sites/5/2014/10/curtin-university-perth-campus.jpg');

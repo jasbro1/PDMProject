@@ -39,7 +39,6 @@ a:hover .header-profile-image {
     padding-left: 10px;
 }
 .likes {
-    text-align: center;
     font-size: 150%;
 }
 
@@ -61,11 +60,11 @@ a:hover .header-profile-image {
 }
 .glyphicon-chevron-up {
     font-size: 10px;
-    margin: 5px;
+    margin: auto;
 }
 .glyphicon-chevron-down {
     font-size: 10px;
-    margin: 5px;
+    margin: auto;
 }
 .glyphicon-chevron-up {
     font-size: 10px;

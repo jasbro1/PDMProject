@@ -53,7 +53,7 @@
     }
 
     function decrementLikes(improvement){
-      if(improvement.likes!=0){
+      if(improvement.likes!==0){
         improvement.likes-=1;
       }
       improvement.$update(successCallback, errorCallback);

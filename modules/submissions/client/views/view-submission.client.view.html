@@ -31,7 +31,8 @@
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
-  <button ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
+  <button class="btn btn-primary"
+          ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
           data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
   <br><br>
 

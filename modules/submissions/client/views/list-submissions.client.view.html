@@ -39,12 +39,13 @@
          filter: searchTerm">
 
       <!-- Post heading section -->
-      <div class="container-fluid">
+      <div class="container-fluid"
+           style="padding-left: 0;";>
 
         <!-- Likes column -->
         <div class="col-xs-2 col-md-1"
              style="float: left; padding-right: 0; padding-left: 0;">
-          <p style="text-align: center">
+          <p style="text-align: center; margin-top: 10px;">
             <button type="button" class="btn btn-group-xs;
           glyphicon glyphicon-chevron-up"
                     ng-click="vm.incrementLikes(submission)"></button>
@@ -64,7 +65,7 @@
         </div>
 
         <!-- Post heading column -->
-        <div class="panel-heading col-xs-9 col-md-10"
+        <div class="panel-heading col-xs-10 col-md-11"
              data-ui-sref="submissions.view({ submissionId: submission._id })">
           <h4 data-ng-bind="submission.title"></h4>
         <span class="label label-primary pull-right"
@@ -74,14 +75,15 @@
           <span data-ng-if="submission.user"
                 data-ng-bind="submission.user.displayName"></span>
             <span data-ng-if="!submission.user">Deleted User</span>
-            on
+            <br>
             <span data-ng-bind="submission.created | date:'mediumDate'"></span>
           </small>
         </div>
       </div>
 
       <!-- Post body section -->
-      <div class="panel-body" style="background-color: white">
+      <div class="panel-body" style="background-color: white"
+           data-ui-sref="submissions.view({ submissionId: submission._id })">
         <p class="lead" data-ng-bind="submission.body"></p>
       </div>
 

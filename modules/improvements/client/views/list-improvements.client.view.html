@@ -67,23 +67,22 @@
         </div>
 
         <!-- Improvement description column -->
-        <div class="col-xs-9"
+        <div class="col-xs-7 col-md-9"
              style="height: 100%;"
-             data-ui-sref="improvements.view({ improvementId: improvement._id })">
+             data-ui-sref="submissions.improvementView({ improvementId: improvement._id })">
           <div style="height:80%">
             <h4 class="list-group-item-heading" data-ng-bind="improvement.body"></h4>
           </div>
           <div style="height: 20%;">
             <small class="bottomAlign">
               Posted on
-              <span data-ng-bind="improvement.created | date:'mediumDate'"></span>
-              by
-                <span data-ng-if="improvement.user"
-                      data-ng-bind="improvement.user.displayName"></span>
+              <span data-ng-if="improvement.user"
+                    data-ng-bind="improvement.user.displayName"></span>
               <span data-ng-if="!improvement.user">Deleted User</span>
+              <br>
+              <span data-ng-bind="improvement.created | date:'mediumDate'"></span>
             </small>
           </div>
-
         </div>
       </div>
     </a>

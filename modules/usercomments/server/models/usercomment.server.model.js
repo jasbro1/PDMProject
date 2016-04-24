@@ -13,17 +13,13 @@ var UsercommentSchema = new Schema({
   body: {
     type: String,
     default: '',
-    required: 'Please fill Comment name',
+    required: 'Please fill out your Comment body',
     trim: true
   },
   submission: {
     type: Schema.ObjectId,
     ref: 'Submission'
   },
-  improvements: [{
-    type: Schema.ObjectId,
-    ref: 'Improvement'
-  }],
   created: {
     type: Date,
     default: Date.now

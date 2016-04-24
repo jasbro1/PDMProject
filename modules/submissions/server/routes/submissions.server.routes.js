@@ -4,9 +4,8 @@
  * Module dependencies
  */
 var submissionsPolicy = require('../policies/submissions.server.policy'),
-  submissions = require('../controllers/submissions.server.controller'),
-  improvements = require('../../../improvements/server/controllers/improvements.server.controller');
-  //usercomments = require('../../../usercomments/server/controllers/usercomments.server.controller');
+  submissions = require('../controllers/submissions.server.controller');
+  //improvements = require('../../../improvements/server/controllers/improvements.server.controller');
 
 module.exports = function(app) {
   // Submissions Routes

@@ -34,9 +34,19 @@
   <button class="btn btn-primary"
           ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
           data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
+
+  <button class="btn btn-primary"
+          ui-sref="submissions.createUsercomment({ usercommentsId: vm.usercomments._id })"
+          data-ng-hide="vm.submission.isCurrentUserOwner">Leave a comment</button>
+
+
   <br><br>
 
   <div class="row">
     <div ui-view="subImprovements"></div>
+  </div>
+
+  <div class="row">
+    <div ui-view="subUserComments"></div>
   </div>
 </section>

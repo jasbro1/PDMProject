@@ -16,10 +16,10 @@ var UsercommentSchema = new Schema({
     required: 'Please fill Comment name',
     trim: true
   },
-  submissions: [{
+  submission: {
     type: Schema.ObjectId,
     ref: 'Submission'
-  }],
+  },
   improvements: [{
     type: Schema.ObjectId,
     ref: 'Improvement'

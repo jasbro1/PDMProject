@@ -1,15 +1,15 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.usercomment._id ? 'Edit Usercomment' : 'New Usercomment'}}</h1>
+    <h1>{{vm.usercomment._id ? 'Edit Usercomment' : 'New comment'}}</h1>
   </div>
   <div class="col-md-12">
     <form name="vm.form.usercommentForm" class="form-horizontal" ng-submit="vm.save(vm.form.usercommentForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.usercomment.name" id="name" class="form-control" placeholder="Name" required>
+          <label class="control-label" for="name">Comment</label>
+          <input name="name" type="text" ng-model="vm.usercomment.body" id="name" class="form-control" required>
           <div ng-messages="vm.form.usercommentForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Usercomment name is required.</p>
+            <p class="help-block error-text" ng-message="required">Comment text is required.</p>
           </div>
         </div>
         <div class="form-group">

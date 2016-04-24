@@ -14,7 +14,8 @@ var path = require('path'),
 exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
   usercomment.user = req.user;
-  usercomment.likes = 0;
+  // A new comment awards the user that posts it  5 points
+  usercomment.likes = 5;
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;

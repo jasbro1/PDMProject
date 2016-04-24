@@ -36,9 +36,8 @@
           data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
 
   <button class="btn btn-primary"
-          ui-sref="submissions.createUsercomment({ usercommentsId: vm.usercomments._id })"
+          ui-sref="submissions.createUsercomment({ submissionId: vm.submission._id })"
           data-ng-hide="vm.submission.isCurrentUserOwner">Leave a comment</button>
-
 
   <br><br>
 

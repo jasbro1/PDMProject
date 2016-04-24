@@ -58,7 +58,7 @@
 
     // Incrementing logic
     function incrementLikes(submission){
-      if(submission.likes===null){
+      if(submission.likes==null){
         submission.likes=0;
       }
       submission.likes+=1;
@@ -70,7 +70,7 @@
       if(submission.likes!==0){
         submission.likes-=1;
       }
-      else if(submission.likes===null){
+      else if(submission.likes==null){
         submission.likes=0;
       }
       submission.$update(successCallback, errorCallback);

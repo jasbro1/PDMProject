@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  // Check branch
+
   angular
     .module('improvements')
     .controller('ImprovementsListController', ImprovementsListController);

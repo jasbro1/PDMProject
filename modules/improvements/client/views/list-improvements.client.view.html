@@ -41,21 +41,35 @@
         <!-- Likes column -->
         <div class="col-xs-2 col-md-1"
              style="float: left; padding-right: 0; padding-left: 0;">
-          <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-up"
+          <!-- Increment button for logged in user -->
+          <p style="text-align: center; margin-top: 10px;">
+            <button ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs;
+                    glyphicon glyphicon-chevron-up"
                     ng-click="vm.incrementLikes(improvement)"></button>
           </p>
+          <!-- Likes for logged in user -->
           <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs"
-                    disabled="disabled"
-                    style="padding-right: 5px; padding-left: 5px;">
+            <button type="button" class="btn btn-group-xs ng-show"
+                    disabled="disabled" ng-show="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;">
               <span data-ng-bind="improvement.likes"></span>
             </button>
           </p>
+          <!-- Likes for logged in user -->
           <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-down"
+            <button type="button" class="btn btn-group-xs ng-hide"
+                    disabled="disabled" ng-hide="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;
+                           margin-top: 20px; margin-bottom: 20px;">
+              <span data-ng-bind="improvement.likes"></span>
+            </button>
+          </p>
+          <!-- Decrement button for logged in user -->
+          <p style="text-align: center">
+            <button ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs;
+                    glyphicon glyphicon-chevron-down"
                     ng-click="vm.decrementLikes(improvement)"></button>
           </p>
         </div>
@@ -63,7 +77,8 @@
         <!-- Improvement description column -->
         <div class="col-xs-7 col-md-9"
              style="height: 100%;"
-             data-ui-sref="submissions.improvementView({ improvementId: improvement._id })">
+             data-ui-sref="improvements.view({ improvementId: improvement._id })"
+             data-ui-sref-opts="{cache: false,reload:true}">
           <div style="height:80%">
             <h4 class="list-group-item-heading" data-ng-bind="improvement.body"></h4>
           </div>

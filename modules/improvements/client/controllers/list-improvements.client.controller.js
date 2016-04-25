@@ -5,19 +5,21 @@
     .module('improvements')
     .controller('ImprovementsListController', ImprovementsListController);
 
-  ImprovementsListController.$inject = ['$state', 'ImprovementsService'];
+  ImprovementsListController.$inject = ['$scope', '$state', 'Authentication', 'ImprovementsService'];
 
-  function ImprovementsListController($state, ImprovementsService) {
+  function ImprovementsListController($scope, $state, Authentication, ImprovementsService) {
     var vm = this;
 
     vm.improvements = ImprovementsService.query();
+    $scope.authentication = Authentication;
 
-    vm.sortTerm = 'like'; // Sort by date by default
-    vm.sortBtnText = 'Sort by Popularity'; // The value to display in the sort button
-    vm.sortReverse = false; // Sort in ascending order by default
-    vm.sortMenuOpen = false; // The sort menu starts off closed by default
+    vm.sortTerm = 'like';                   // Sort by likes by default
+    vm.sortBtnText = 'Sort by Popularity';  // The value to display in the sort button
+    vm.sortReverse = false;                 // Sort in ascending order by default
+    vm.sortMenuOpen = false;                // The sort menu starts off closed by default
     vm.incrementLikes = incrementLikes;
     vm.decrementLikes = decrementLikes;
+    vm.shouldRender = shouldRender;
 
     // The code for managing the sorting functionality
     vm.sortBy = function(inSortTerm) {
@@ -53,7 +55,6 @@
     // Load improvements list
     vm.load = function(){
       $state.reload();  // Loads the improvements list
-      console.log('---------------- reverse? '+ vm.sortReverse);
     };
 
     // Incrementing logic
@@ -81,6 +82,16 @@
 
     function errorCallback(res) {
       vm.error = res.data.message;
+    }
+
+    // Render if logged in
+    function shouldRender(user) {
+      if (user) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 })();

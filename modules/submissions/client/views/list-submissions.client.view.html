@@ -42,26 +42,40 @@
 
       <!-- Post heading section -->
       <div class="container-fluid"
-           style="padding-left: 0;";>
+           style="padding-left: 0;">
 
         <!-- Likes column -->
         <div class="col-xs-2 col-md-1"
              style="float: left; padding-right: 0; padding-left: 0;">
+          <!-- Increment button for logged in user -->
           <p style="text-align: center; margin-top: 10px;">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-up"
+            <button ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs;
+                    glyphicon glyphicon-chevron-up"
                     ng-click="vm.incrementLikes(submission)"></button>
           </p>
+          <!-- Likes for logged in user -->
           <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs"
-                    disabled="disabled"
-                    style="padding-right: 5px; padding-left: 5px;">
+            <button type="button" class="btn btn-group-xs ng-show"
+                    disabled="disabled" ng-show="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;">
               <span data-ng-bind="submission.likes"></span>
             </button>
           </p>
+          <!-- Likes for logged in user -->
           <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-down"
+            <button type="button" class="btn btn-group-xs ng-hide"
+                    disabled="disabled" ng-hide="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;
+                           margin-top: 20px; margin-bottom: 20px;">
+              <span data-ng-bind="submission.likes"></span>
+            </button>
+          </p>
+          <!-- Decrement button for logged in user -->
+          <p style="text-align: center">
+            <button ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs;
+                    glyphicon glyphicon-chevron-down"
                     ng-click="vm.decrementLikes(submission)"></button>
           </p>
         </div>

@@ -5,14 +5,14 @@
     .module('submissions')
     .controller('SubmissionsListController', SubmissionsListController);
 
-  SubmissionsListController.$inject = ['SubmissionsService'];
+  SubmissionsListController.$inject = ['$scope', 'Authentication', 'SubmissionsService'];
 
-  function SubmissionsListController(SubmissionsService) {
+  function SubmissionsListController($scope, Authentication, SubmissionsService) {
     var vm = this;
 
     // Retrieve the submissions from the database
     vm.submissions = SubmissionsService.query();
-
+    $scope.authentication = Authentication;
 
     vm.sortTerm = 'like'; // Sort by date by default
     vm.sortBtnText = 'Sort by Popularity'; // The value to display in the sort button
@@ -20,6 +20,7 @@
     vm.sortMenuOpen = false; // The sort menu starts off closed by default
     vm.incrementLikes = incrementLikes;
     vm.decrementLikes = decrementLikes;
+    vm.shouldRender = shouldRender;
 
     // The code for managing the sorting functionality
     vm.sortBy = function(inSortTerm) {
@@ -77,6 +78,16 @@
 
     function errorCallback(res) {
       vm.error = res.data.message;
+    }
+
+    // Render if logged in
+    function shouldRender(user) {
+      if (user) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 })();

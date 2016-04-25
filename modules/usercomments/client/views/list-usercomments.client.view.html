@@ -12,8 +12,9 @@
         by
         <span data-ng-if="usercomment.user" data-ng-bind="usercomment.user.displayName"></span>
         <span data-ng-if="!usercomment.user">Deleted User</span>
+        <br><br>
       </small>
-      <h4 class="list-group-item-heading" data-ng-bind="usercomment.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="usercomment.body"></h4>
     </a>
   </div>
   <div class="alert alert-warning text-center" data-ng-if="vm.usercomments.$resolved && !vm.usercomments.length">

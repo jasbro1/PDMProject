@@ -5,6 +5,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Usercomment = mongoose.model('Usercomment'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -13,9 +14,28 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
-  usercomment.user = req.user;
-  req.user.likes = req.user.likes +5;
-  //usercomment.likes = 10;
+  var user = req.user;
+  usercomment.user = user;
+  // A new comment awards the user that posts it  5 points
+  if(user._doc.likes) {
+    user._doc.likes += 5;
+  }
+  else {
+    user.likes = 5;
+  }
+  user.update = function(req, res) {
+    var user = req.user._doc ;
+    user = _.assign({ 'likes': user.likes });
+    user.save(function(err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.jsonp(user);
+      }
+    });
+  };
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;

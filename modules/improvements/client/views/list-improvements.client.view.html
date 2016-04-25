@@ -10,6 +10,7 @@
       <div class="input-group-btn" ng-class="{open : vm.sortMenuOpen}">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="vm.toggleSortMenu()">{{vm.sortBtnText}} <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#" ng-click="vm.sortBy('likes') ; vm.toggleSortMenu()">Sort by Popularity</a></li>
           <li><a href="#" ng-click="vm.sortBy('created') ; vm.toggleSortMenu()"> Sort by Date</a></li>
           <li><a href="#" ng-click="vm.sortBy('user') ; vm.toggleSortMenu()">Sort by User</a></li>
         </ul>

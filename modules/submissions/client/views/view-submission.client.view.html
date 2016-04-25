@@ -41,11 +41,12 @@
       </tab-heading>
       <div>
         <br>
+        <div class="row">
         <button class="btn btn-primary"
                 ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
-                data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement
+                data-ng-hide="vm.submission.isCurrentUserOwner">Add an Improvement
         </button>
-        <div class="row">
+
           <div ui-view="subImprovements"></div>
         </div>
       </div>

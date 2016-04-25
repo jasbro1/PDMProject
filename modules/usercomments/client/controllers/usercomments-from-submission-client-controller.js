@@ -41,6 +41,7 @@
             if (vm.usercomments._id) {
                 vm.usercomments.$update(successCallback, errorCallback);
             } else {
+
                 vm.usercomments.$save(successCallback, errorCallback);
             }
 

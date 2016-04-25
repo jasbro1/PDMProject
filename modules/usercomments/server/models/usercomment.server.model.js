@@ -13,7 +13,7 @@ var UsercommentSchema = new Schema({
   body: {
     type: String,
     default: '',
-    required: 'Please fill out your Comment body',
+    required: 'Please enter a comment',
     trim: true
   },
   submission: {

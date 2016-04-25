@@ -14,13 +14,14 @@ var path = require('path'),
 exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
   usercomment.user = req.user;
-  // A new comment awards the user that posts it  5 points
-  usercomment.likes = 5;
+  usercomment.likes = 10;
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;
   var headerArray = headers.split('/');
-  var submissionID = headerArray[4];
+
+  //Save the submission id to user comment
+  usercomment.submission = headerArray[4];
 
   usercomment.save(function(err) {
     if (err) {

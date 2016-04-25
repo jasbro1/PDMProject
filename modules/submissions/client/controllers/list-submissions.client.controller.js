@@ -14,8 +14,8 @@
     vm.submissions = SubmissionsService.query();
 
 
-    vm.sortTerm = 'date'; // Sort by date by default
-    vm.sortBtnText = 'Sort by Date'; // The value to display in the sort button
+    vm.sortTerm = 'like'; // Sort by date by default
+    vm.sortBtnText = 'Sort by Popularity'; // The value to display in the sort button
     vm.sortReverse = false; // Sort in ascending order by default
     vm.sortMenuOpen = false; // The sort menu starts off closed by default
     vm.incrementLikes = incrementLikes;
@@ -26,9 +26,9 @@
 
       // Change the value of the search term to the imported value
       switch (inSortTerm) {
-        case 'title':
-          vm.sortTerm = 'title';
-          vm.sortBtnText = 'Sort by Title';
+        case 'likes':
+          vm.sortTerm = 'likes';
+          vm.sortBtnText = 'Sort by Popularity';
           break;
         case 'date':
           vm.sortTerm = 'date';
@@ -38,13 +38,9 @@
           vm.sortTerm = 'user.displayName';
           vm.sortBtnText = 'Sort by User';
           break;
-        case 'category':
-          vm.sortTerm = 'categories';
-          vm.sortBtnText = 'Sort by Category';
-          break;
         default:
-          vm.sortTerm = 'date';
-          vm.sortBtnText = 'Sort by Date';
+          vm.sortTerm = 'likes';
+          vm.sortBtnText = 'Sort by Popularity';
           break;
       }
 
@@ -58,7 +54,7 @@
 
     // Incrementing logic
     function incrementLikes(submission){
-      if(submission.likes==null){
+      if(submission.likes===null){
         submission.likes=0;
       }
       submission.likes+=1;
@@ -70,7 +66,7 @@
       if(submission.likes!==0){
         submission.likes-=1;
       }
-      else if(submission.likes==null){
+      else if(submission.likes===null){
         submission.likes=0;
       }
       submission.$update(successCallback, errorCallback);

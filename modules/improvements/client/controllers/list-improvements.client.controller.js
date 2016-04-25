@@ -31,13 +31,14 @@
         case 'date':
           vm.sortTerm = 'date';
           vm.sortBtnText = 'Sort by Date';
+          break;
         case 'user':
           vm.sortTerm = 'user.displayName';
           vm.sortBtnText = 'Sort by User';
           break;
         default:
-          vm.sortTerm = 'likes';
-          vm.sortBtnText = 'Sort by Popularity';
+          vm.sortTerm = 'date';
+          vm.sortBtnText = 'Sort by Date';
           break;
       }
 
@@ -51,7 +52,8 @@
 
     // Load improvements list
     vm.load = function(){
-      $state.reload();
+      $state.reload();  // Loads the improvements list
+      console.log('---------------- reverse? '+ vm.sortReverse);
     };
 
     // Incrementing logic

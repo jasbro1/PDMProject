@@ -65,7 +65,7 @@ exports.isAllowed = function (req, res, next) {
     return next();
   }
   else {
-    return next();
+    res.redirect();
   }
 
   // Check for user roles

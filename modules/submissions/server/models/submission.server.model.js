@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 
 /**
  * Submission Schema
- * Each submission must be tied to a user sdsadsad
+ * Each submission must be tied to a user sss
  */
 var SubmissionSchema = new Schema({
   title: {

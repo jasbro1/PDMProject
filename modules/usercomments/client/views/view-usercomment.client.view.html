@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1 data-ng-bind="vm.usercomment.name"></h1>
+    <h1 data-ng-bind="vm.usercomment.body"></h1>
   </div>
   <div class="pull-right"
        data-ng-show="vm.usercomment.isCurrentUserOwner">
@@ -23,4 +23,5 @@
     </em>
   </small>
   <p class="lead" data-ng-bind="vm.usercomment.content"></p>
+  <a href="javascript:history.back()">Back to submission</a>
 </section>

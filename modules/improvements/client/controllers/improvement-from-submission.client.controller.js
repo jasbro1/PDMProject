@@ -2,9 +2,6 @@
  * Created by M on 21/04/2016.
  */
 
-/**
- * TODO: Clean up this controller and remove unnecessary functions
- */
 
 (function () {
   'use strict';

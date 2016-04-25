@@ -82,7 +82,7 @@
       })
       .state('submissions.createUsercomment', {
         url: '/:submissionId/addUsercomment',
-        templateUrl: 'modules/improvements/client/views/form-usercomment.client.view.html',
+        templateUrl: 'modules/usercomments/client/views/form-usercomment.client.view.html',
         controller: 'UsercommentsFromSubCrtlr',
         controllerAs: 'vm',
         resolve: {
@@ -95,7 +95,7 @@
       })
       .state('submissions.listUsercomments', {
         url: '/usercomments',
-        templateUrl: 'modules/improvements/client/views/list-usercomments.client.view.html',
+        templateUrl: 'modules/usercomments/client/views/list-usercomments.client.view.html',
         controller: 'UsercommentsListController',
         controllerAs: 'vm',
         data: {

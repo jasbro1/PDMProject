@@ -33,6 +33,7 @@
          style="font-size: 30px;margin: 5px;display: block;"></i>
     </a>
   </div>
+  <!-- TODO: Move this to the improvement view -->
   <div ng-show="authentication.user" class="ng-show">
     <button class="btn btn-primary ng-show"
             ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
@@ -40,7 +41,39 @@
   </div>
   <br><br>
 
-  <div class="row">
-    <div ui-view="subImprovements"></div>
-  </div>
+  <tabset>
+    <tab>
+      <tab-heading>
+        <span>Improvements</span>
+      </tab-heading>
+      <div>
+        <br>
+        <div class="row">
+        <button class="btn btn-primary"
+                ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
+                data-ng-hide="vm.submission.isCurrentUserOwner">Add an Improvement
+        </button>
+
+          <div ui-view="subImprovements"></div>
+        </div>
+      </div>
+    </tab>
+
+    <tab>
+      <tab-heading>
+        <span>Comments</span>
+      </tab-heading>
+      <div>
+        <br>
+        <div class="row">
+          <button class="btn btn-primary"
+                  ui-sref="submissions.createUsercomment({ submissionId: vm.submission._id })"
+                  data-ng-hide="vm.submission.isCurrentUserOwner"> Add a comment
+          </button>
+          <br><br>
+          <div ui-view="subUserComments"></div>
+        </div>
+      </div>
+    </tab>
+
 </section>

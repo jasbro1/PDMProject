@@ -22,6 +22,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.clicked=false;
 
     // Remove existing Improvement
     function remove() {
@@ -34,8 +35,11 @@
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.improvementForm');
+        vm.clicked=false;
         return false;
       }
+
+      vm.clicked=true;
 
       // TODO: move create/update logic to service
       if (vm.improvement._id) {
@@ -45,9 +49,7 @@
       }
 
       function successCallback(res) {
-        $state.go('improvements.view', {
-          improvementId: res._id
-        });
+        
       }
 
       function errorCallback(res) {

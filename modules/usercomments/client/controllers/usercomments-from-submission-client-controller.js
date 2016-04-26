@@ -22,6 +22,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    vm.clicked = false;
 
     // Remove existing usercomments
     function remove() {
@@ -37,6 +38,7 @@
         return false;
       }
 
+      vm.clicked =true;
 
       if (vm.usercomments._id) {
         vm.usercomments.$update(successCallback, errorCallback);
@@ -45,9 +47,7 @@
       }
 
       function successCallback(res) {
-        $state.go('usercomments.view', {
-          usercommentsId: res._id
-        });
+        
       }
 
       function errorCallback(res) {

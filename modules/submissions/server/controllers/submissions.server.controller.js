@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Submission = mongoose.model('Submission'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -16,7 +17,24 @@ var path = require('path'),
 exports.create = function(req, res) {
   var submission = new Submission(req.body);
   submission.user = req.user;
-
+  var user=req.user;
+  var points = user._doc.points;
+  if(user._doc.points) {
+    points = user._doc.points + 20;
+  }
+  else {
+    points=20;
+  }
+  var id = user._id;
+  user = _.set(user, 'points', points);
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+    }
+  });
   submission.save(function(err) {
     if (err) {
       return res.status(400).send({

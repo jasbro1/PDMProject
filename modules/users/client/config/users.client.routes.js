@@ -73,6 +73,12 @@ angular.module('users').config(['$stateProvider',
         url: '/success',
         templateUrl: 'modules/users/client/views/password/reset-password-success.client.view.html'
       })
+      .state('settings.myPoints', {
+        url: '/myPoints',
+        templateUrl: 'modules/users/client/views/settings/points.client.view.html',
+        controller: 'showPointsController',
+        controllerAs: 'vm'
+      })
       .state('password.reset.form', {
         url: '/:token',
         templateUrl: 'modules/users/client/views/password/reset-password.client.view.html'

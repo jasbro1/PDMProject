@@ -45,6 +45,10 @@ var UserSchema = new Schema({
     type: String,
     trim: true
   },
+  points:{
+    type:Number,
+    default:'0'
+  },
   likes: Number,
   email: {
     type: String,

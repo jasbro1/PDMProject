@@ -18,14 +18,14 @@ exports.create = function(req, res) {
   usercomment.user = user;
   // A new comment awards the user that posts it  5 points
   if(user._doc.likes) {
-    user._doc.likes += 5;
+    user.likes = user._doc.likes + 5;
   }
   else {
     user.likes = 5;
   }
   user.update = function(req, res) {
     var user = req.user._doc ;
-    user = _.assign({ 'likes': user.likes });
+    user = _.assign({ 'likes': user._doc.likes });
     user.save(function(err) {
       if (err) {
         return res.status(400).send({

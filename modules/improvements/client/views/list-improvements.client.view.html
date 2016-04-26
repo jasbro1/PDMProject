@@ -31,12 +31,12 @@
 
   <!-- Improvements List -->
   <div class="list-group">
-    <a data-ng-repeat="improvement in vm.improvements |
+    <div data-ng-repeat="improvement in vm.improvements |
     orderBy:vm.sortTerm:vm.sortReverse |  filter: searchTerm"
        class="list-group-item"
        style="padding-left: 0;">
 
-      <div class="container-fluid">
+      <div class="container-fluid" style="padding-left: 0;">
 
         <!-- Likes column -->
         <div class="col-xs-2 col-md-1"
@@ -75,8 +75,10 @@
         </div>
 
         <!-- Improvement description column -->
+        <a data-ui-sref="improvements.view({ improvementId: improvement._id })"
+           style="text-decoration: none">
         <div class="col-xs-7 col-md-9"
-             style="height: 100%;"
+             style="height: 100%; padding-top: 10px"
              data-ui-sref="improvements.view({ improvementId: improvement._id })"
              data-ui-sref-opts="{cache: false,reload:true}">
           <div style="height:80%">
@@ -93,7 +95,8 @@
             </small>
           </div>
         </div>
+        </a>
       </div>
-    </a>
+    </div>
   </div>
 </section>

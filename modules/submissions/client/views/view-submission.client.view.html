@@ -44,6 +44,7 @@
         <br>
         <div class="row">
         <button class="btn btn-primary" ng-if="authentication.user"
+                style="margin-left: 10px"
                 ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
                 data-ng-hide="vm.submission.isCurrentUserOwner">Add Improvement
         </button>
@@ -61,6 +62,7 @@
         <br>
         <div class="row">
           <button class="btn btn-primary" ng-if="authentication.user"
+                  style="margin-left: 10px"
                   ui-sref="submissions.createUsercomment({ submissionId: vm.submission._id })">
             Add Comment
           </button>

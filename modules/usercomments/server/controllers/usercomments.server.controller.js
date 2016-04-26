@@ -16,26 +16,27 @@ exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
   var user = req.user;
   usercomment.user = user;
+  var likes = user._doc.likes;
+
   // A new comment awards the user that posts it  5 points
   if(user._doc.likes) {
-    user.likes = user._doc.likes + 5;
+    likes = user._doc.likes + 5;
   }
   else {
-    user.likes = 5;
+    likes = 5;
   }
-  user.update = function(req, res) {
-    var user = req.user._doc ;
-    user = _.assign({ 'likes': user._doc.likes });
-    user.save(function(err) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } else {
-        res.jsonp(user);
-      }
-    });
-  };
+
+  var id = user._id;
+  user = _.set(user, 'likes', likes);
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+    }
+  });
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;

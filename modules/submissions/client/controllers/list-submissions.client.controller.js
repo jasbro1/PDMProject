@@ -18,6 +18,7 @@
     vm.sortBtnText = 'Sort by Popularity'; // The value to display in the sort button
     vm.sortReverse = true; // Sort in ascending order by default
     vm.sortMenuOpen = false; // The sort menu starts off closed by default
+    vm.hasVoted = false;
     vm.incrementLikes = incrementLikes;
     vm.decrementLikes = decrementLikes;
     vm.shouldRender = shouldRender;
@@ -59,6 +60,7 @@
         submission.likes=0;
       }
       submission.likes+=byX;
+      vm.hasVoted=true;
       submission.$update(successCallback, errorCallback);
     }
 

@@ -58,18 +58,18 @@
     };
 
     // Incrementing logic
-    function incrementLikes(improvement){
+    function incrementLikes(improvement, byX){
       if(improvement.likes===null){
         improvement.likes=0;
       }
-      improvement.likes+=1;
+      improvement.likes+=byX;
       improvement.$update(successCallback, errorCallback);
     }
 
     // Decrementing logic
-    function decrementLikes(improvement){
+    function decrementLikes(improvement, byX){
       if(improvement.likes!==0){
-        improvement.likes-=1;
+        improvement.likes-=byX;
       }
       else if(improvement.likes===null){
         improvement.likes=0;

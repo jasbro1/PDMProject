@@ -54,18 +54,18 @@
     };
 
     // Incrementing logic
-    function incrementLikes(submission){
+    function incrementLikes(submission, byX){
       if(submission.likes===null){
         submission.likes=0;
       }
-      submission.likes+=1;
+      submission.likes+=byX;
       submission.$update(successCallback, errorCallback);
     }
 
     // Decrementing logic
-    function decrementLikes(submission){
+    function decrementLikes(submission, byX){
       if(submission.likes!==0){
-        submission.likes-=1;
+        submission.likes-=byX;
       }
       else if(submission.likes===null){
         submission.likes=0;

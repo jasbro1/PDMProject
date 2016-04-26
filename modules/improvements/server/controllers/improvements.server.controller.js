@@ -23,10 +23,9 @@ exports.create = function(req, res) {
     likes = user._doc.likes + 10;
   }
   else {
-    likes = 5;
+    likes = 10;
   }
-
-  var id = user._id;
+  
   user = _.set(user, 'likes', likes);
 
   user.save(function (err) {
@@ -41,10 +40,11 @@ exports.create = function(req, res) {
   // Get the submissionID from the URL
   var headers = req.headers.referer;
   var headerArray = headers.split('/');
-  var submissionID = headerArray[4];
-
+  
   //Save submissionID to the improvement
-  improvement.submission = submissionID;
+  improvement.submission = headerArray[4];
+
+  improvement.likes = 0;
 
   improvement.save(function(err) {
     if (err) {

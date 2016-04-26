@@ -14,9 +14,9 @@
     vm.submissions = SubmissionsService.query();
     $scope.authentication = Authentication;
 
-    vm.sortTerm = 'like'; // Sort by date by default
+    vm.sortTerm = 'likes'; // Sort by date by default
     vm.sortBtnText = 'Sort by Popularity'; // The value to display in the sort button
-    vm.sortReverse = false; // Sort in ascending order by default
+    vm.sortReverse = true; // Sort in ascending order by default
     vm.sortMenuOpen = false; // The sort menu starts off closed by default
     vm.incrementLikes = incrementLikes;
     vm.decrementLikes = decrementLikes;
@@ -82,12 +82,7 @@
 
     // Render if logged in
     function shouldRender(user) {
-      if (user) {
-        return true;
-      }
-      else {
-        return false;
-      }
+      return !!user;
     }
   }
 })();

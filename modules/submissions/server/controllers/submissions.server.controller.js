@@ -15,8 +15,30 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var submission = new Submission(req.body);
-  submission.user = req.user;
+  var user = req.user;
+  var likes = user._doc.likes;
+
+  // A new comment awards the user that posts it  5 points
+  if(user._doc.likes) {
+    likes = user._doc.likes + 20;
+  }
+  else {
+    likes = 20;
+  }
+  
+  user = _.set(user, 'likes', likes);
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+    }
+  });
+
   submission.likes=0;
+  submission.user = user;
 
   submission.save(function(err) {
     if (err) {

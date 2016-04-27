@@ -95,7 +95,7 @@ exports.changeProfilePicture = function (req, res) {
   }
 };
 
-exports.showPoints=function(req,res){
+/*exports.showPoints=function(req,res){
   User.find({ 'user': req.user.id }).exec(function(err, users) {
     if (err) {
       return res.status(400).send({
@@ -106,7 +106,7 @@ exports.showPoints=function(req,res){
     }
   });
 };
-
+*/
 
 /**
  * Send User

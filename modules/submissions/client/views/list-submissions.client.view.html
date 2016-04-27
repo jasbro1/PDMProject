@@ -2,7 +2,7 @@
   <div class="page-header">
 
     <!-- Search box -->
-    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 pull-right">
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-11 pull-right">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search for..."
                data-ng-model="searchTerm">
@@ -15,6 +15,8 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#" ng-click="vm.sortBy('likes') ; vm.toggleSortMenu()">
+              Sort by Popularity</a></li>
             <li><a href="#" ng-click="vm.sortBy('created') ; vm.toggleSortMenu()">
               Sort by Date</a></li>
             <li><a href="#" ng-click="vm.sortBy('title') ; vm.toggleSortMenu()">
@@ -34,28 +36,80 @@
   <!-- Submission list -->
   <div>
     <div class="panel panel-info"
-         data-ui-sref="submissions.view({ submissionId: submission._id })"
          data-ng-repeat="submission in vm.submissions |
          orderBy:vm.sortTerm:vm.sortReverse |
          filter: searchTerm">
 
       <!-- Post heading section -->
-      <div class="panel-heading">
-        <h4 data-ng-bind="submission.title"></h4>
+      <div class="container-fluid"
+           style="padding-left: 0;">
+
+        <!-- Likes column -->
+        <div class="col-xs-2 col-md-1"
+             style="float: left; padding-right: 0; padding-left: 0;">
+          <!-- Increment button for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button style="padding: 4px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.incrementLikes(submission, 1)">+1</button>
+
+            <button style="padding: 4px; font-size: 12px; margin: 1px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.incrementLikes(submission, 5)">+5</button>
+          </p>
+          <!-- Likes for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button type="button" class="btn btn-group-xs ng-show"
+                    disabled="disabled" ng-show="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;">
+              <span data-ng-bind="submission.likes"></span>
+            </button>
+          </p>
+          <!-- Likes for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button type="button" class="btn btn-group-xs ng-hide"
+                    disabled="disabled" ng-hide="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;
+                           margin-top: 20px; margin-bottom: 20px;">
+              <span data-ng-bind="submission.likes"></span>
+            </button>
+          </p>
+          <!-- Decrement button for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.decrementLikes(submission, 1)">-1</button>
+
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.decrementLikes(submission, 5)">-5</button>
+          </p>
+        </div>
+
+        <!-- Post heading column -->
+        <div class="panel-heading col-xs-10 col-md-11"
+             data-ui-sref="submissions.view({ submissionId: submission._id })">
+          <h4 data-ng-bind="submission.title"></h4>
         <span class="label label-primary pull-right"
               data-ng-bind="submission.categories"></span>
-        <small>
-          By
+          <small>
+            By
           <span data-ng-if="submission.user"
                 data-ng-bind="submission.user.displayName"></span>
-          <span data-ng-if="!submission.user">Deleted User</span>
-          on
-          <span data-ng-bind="submission.created | date:'mediumDate'"></span>
-        </small>
+            <span data-ng-if="!submission.user">Deleted User</span>
+            <br>
+            <span data-ng-bind="submission.created | date:'mediumDate'"></span>
+          </small>
+        </div>
       </div>
 
       <!-- Post body section -->
-      <div class="panel-body" style="background-color: white">
+      <div class="panel-body" style="background-color: white"
+           data-ui-sref="submissions.view({ submissionId: submission._id })">
         <p class="lead" data-ng-bind="submission.body"></p>
       </div>
 

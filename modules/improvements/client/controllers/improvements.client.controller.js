@@ -10,9 +10,9 @@
     .module('improvements')
     .controller('ImprovementsController', ImprovementsController);
 
-  ImprovementsController.$inject = ['$scope', '$state', 'Authentication', 'improvementResolve'];
+  ImprovementsController.$inject = ['$scope', '$state', '$location', 'Authentication', 'improvementResolve'];
 
-  function ImprovementsController ($scope, $state, Authentication, improvement) {
+  function ImprovementsController ($scope, $state, location, Authentication, improvement) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -41,12 +41,15 @@
         vm.improvement.$update(successCallback, errorCallback);
       } else {
         vm.improvement.$save(successCallback, errorCallback);
+        var path = $scope.URL;
+        path.substring(0, path.length-15);
+        location.path('path');
       }
 
       function successCallback(res) {
-        $state.go('improvements.view', {
-          improvementId: res._id
-        });
+        var path = $scope.URL;
+        path.substring(0, path.length-15);
+        location.path('path');
       }
 
       function errorCallback(res) {

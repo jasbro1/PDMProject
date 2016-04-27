@@ -1,34 +1,28 @@
 <section>
-  <div class="page-header">
-
-    <button class="btn btn-secondary-outline"
-            type="button" ng-click="vm.load()"
-            data-toggle="collapse">
-    Improvements
-    </button>
+  <div style="margin-bottom: 10px;">
 
   <!-- Search box -->
   <div class="col-lg-4 col-md-5 col-sm-6 col-xs-8 pull-right">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for..."
-             data-ng-model="searchTerm">
+      <input type="text" class="form-control" placeholder="Search for..." data-ng-model="searchTerm">
+
       <div class="input-group-btn" ng-class="{open : vm.sortMenuOpen}">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" ng-click="vm.toggleSortMenu()">
-          {{vm.sortBtnText}}
-          <span class="caret"></span>
-        </button>
+        <button type="button" class="btn btn-default dropdown-toggle"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                ng-click="vm.toggleSortMenu()">{{vm.sortBtnText}} <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right">
+          <li><a href="#" ng-click="vm.sortBy('likes') ; vm.toggleSortMenu()">
+            Sort by Popularity</a></li>
           <li><a href="#" ng-click="vm.sortBy('created') ; vm.toggleSortMenu()">
-            Sort by Date
-          </a></li>
+            Sort by Date</a></li>
           <li><a href="#" ng-click="vm.sortBy('user') ; vm.toggleSortMenu()">
-            Sort by User
-          </a></li>
+            Sort by User</a></li>
         </ul>
       </div>
+
     </div>
   </div>
+
   <br>
 
   <!-- Spacing -->
@@ -37,55 +31,85 @@
 
   <!-- Improvements List -->
   <div class="list-group">
-    <a data-ng-repeat="improvement in vm.improvements |
+    <div data-ng-repeat="improvement in vm.improvements |
     orderBy:vm.sortTerm:vm.sortReverse |  filter: searchTerm"
        class="list-group-item"
        style="padding-left: 0;">
 
-      <div class="container-fluid">
+      <div class="container-fluid" style="padding-left: 0;">
 
         <!-- Likes column -->
         <div class="col-xs-2 col-md-1"
              style="float: left; padding-right: 0; padding-left: 0;">
-          <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-up"
-                    ng-click="vm.incrementLikes(improvement)"></button>
+          <!-- Increment button for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.incrementLikes(improvement, 1)">+1</button>
+
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.incrementLikes(improvement, 5)">+5</button>
           </p>
-          <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs"
-                    disabled="disabled"
-                    style="padding-right: 5px; padding-left: 5px;">
+          <!-- Likes for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button type="button" class="btn btn-group-xs ng-show"
+                    disabled="disabled" ng-show="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px; margin: 1px;">
               <span data-ng-bind="improvement.likes"></span>
             </button>
           </p>
-          <p style="text-align: center">
-            <button type="button" class="btn btn-group-xs;
-          glyphicon glyphicon-chevron-down"
-                    ng-click="vm.decrementLikes(improvement)"></button>
+          <!-- Likes for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button type="button" class="btn btn-group-xs ng-hide"
+                    disabled="disabled" ng-hide="authentication.user"
+                    style="padding-right: 8px; padding-left: 8px; padding-top: 8px;
+                           margin-top: 20px; margin-bottom: 20px;">
+              <span data-ng-bind="improvement.likes"></span>
+            </button>
+          </p>
+          <!-- Decrement button for logged in user -->
+          <p style="text-align: center; margin: 5px;">
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.decrementLikes(improvement, 1)">-1</button>
+
+            <button style="padding: 5px; font-size: 12px;"
+                    ng-if="vm.shouldRender(authentication.user);"
+                    type="button" class="btn btn-group-xs"
+                    ng-click="vm.decrementLikes(improvement, 5)">-5</button>
           </p>
         </div>
 
         <!-- Improvement description column -->
-        <div class="col-xs-9"
-             style="height: 100%;"
-             data-ui-sref="improvements.view({ improvementId: improvement._id })">
+        <a data-ui-sref="improvements.view({ improvementId: improvement._id })"
+           style="text-decoration: none">
+        <div class="col-xs-7 col-md-9"
+             style="height: 100%; padding-top: 10px"
+             data-ui-sref="improvements.view({ improvementId: improvement._id })"
+             data-ui-sref-opts="{cache: false,reload:true}">
           <div style="height:80%">
             <h4 class="list-group-item-heading" data-ng-bind="improvement.body"></h4>
           </div>
           <div style="height: 20%;">
             <small class="bottomAlign">
-              Posted on
-              <span data-ng-bind="improvement.created | date:'mediumDate'"></span>
-              by
-                <span data-ng-if="improvement.user"
-                      data-ng-bind="improvement.user.displayName"></span>
+              Posted by
+              <span data-ng-if="improvement.user"
+                    data-ng-bind="improvement.user.displayName"></span>
               <span data-ng-if="!improvement.user">Deleted User</span>
+              <br>
+              <span data-ng-if="improvement.user"
+                    data-ng-bind="improvement.user.likes"></span>
+              <br>
+              <span data-ng-bind="improvement.created | date:'mediumDate'"></span>
             </small>
           </div>
-
         </div>
+        </a>
       </div>
-    </a>
+    </div>
   </div>
 </section>

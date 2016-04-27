@@ -11,8 +11,8 @@
   function SubmissionsController ($scope, $state, Authentication, submission) {
     var vm = this;
 
-    vm.authentication = Authentication;
     vm.submission = submission;
+    $scope.authentication = Authentication;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;

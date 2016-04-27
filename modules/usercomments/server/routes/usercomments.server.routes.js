@@ -10,6 +10,7 @@ module.exports = function(app) {
   // Usercomments Routes
   app.route('/api/usercomments').all(usercommentsPolicy.isAllowed)
     .get(usercomments.list)
+    .put(usercomments.update)
     .post(usercomments.create);
 
   app.route('/api/usercomments/:usercommentId').all(usercommentsPolicy.isAllowed)

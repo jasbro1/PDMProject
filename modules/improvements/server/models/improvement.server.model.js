@@ -28,6 +28,10 @@ var ImprovementSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
+  userWhoVoted: [{
+    theUser: Schema.ObjectId,
+    voteValue: Number
+  }],
   likes: Number
 });
 

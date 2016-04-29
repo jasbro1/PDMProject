@@ -76,8 +76,14 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var improvement = req.improvement ;
-
-  improvement = _.extend(improvement , req.body);
+  var voteValue = req.body.likes - req.improvement.likes;
+  if (voteValue!=0) {
+    console.log('------ HERE:' + voteValue);
+    
+  }
+  else {
+    improvement = _.extend(improvement , req.body);
+  }
 
   improvement.save(function(err) {
     if (err) {

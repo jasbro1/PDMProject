@@ -12,6 +12,8 @@
 
     vm.improvements = ImprovementsService.query();
     $scope.authentication = Authentication;
+    $scope.newVoteUser = $scope.authentication.user;
+    $scope.newVoteVal = 0;
 
     vm.sortTerm = 'likes';                   // Sort by likes by default
     vm.sortBtnText = 'Sort by Popularity';  // The value to display in the sort button
@@ -59,6 +61,8 @@
 
     // Incrementing logic
     function incrementLikes(improvement, byX){
+      $scope.newVoteUser = authentication.user;
+      $scope.newVoteVal = byX;
       if(improvement.likes===null){
         improvement.likes=0;
       }

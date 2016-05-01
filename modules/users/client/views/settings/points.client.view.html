@@ -1,7 +1,17 @@
 <section class="row" ng-controller="ChangePasswordController">
   <tabset>
     <tab>
-  <div>
-      Your current points:<span data-ng-bind="user.points"></span>
-  </div></tab>
+      <div>
+        Your current points:
+      </div>
+      <!-- Progress bar -->
+      <div id="pointProgressBar" class="progress">
+        <!-- Dynamically updates using $scope.progress from the controller -->
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
+             aria-valuemax="100" style="width:{{progress}}%">
+          <!-- Display numeric value inside the progress bar -->
+          <strong><span> {{user.points}}% </span></div></strong>
+        </div>
+      </div>
+    </tab>
 </section>

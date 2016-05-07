@@ -95,8 +95,8 @@ exports.changeProfilePicture = function (req, res) {
   }
 };
 
-/*exports.showPoints=function(req,res){
-  User.find({ 'user': req.user.id }).exec(function(err, users) {
+exports.showPoints=function(req,res){
+  User.find({ 'points':req.user.points }).exec(function(err, users) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -106,7 +106,7 @@ exports.changeProfilePicture = function (req, res) {
     }
   });
 };
-*/
+
 
 /**
  * Send User

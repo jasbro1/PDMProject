@@ -26,14 +26,16 @@ angular.module('users').controller('showPointsController', ['$scope', '$http', '
     function ($scope, $http, $location, Users, Authentication) {
         $scope.user = Authentication.user;
 
-
         // Update a user profile
         $scope.getPoints = function () {
             Users.query(function(users){
                 $scope.users = users;
                 console.log('shit');
             });
-
         };
+        // Piggyback off query to update points
+        $scope.progress = (user.points/100)*100;
+
+            //TODO: create function that grows progress bar based on points
     }
 ]);*/

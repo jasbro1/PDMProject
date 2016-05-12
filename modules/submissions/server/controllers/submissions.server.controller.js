@@ -103,7 +103,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
 
-  Submission.find().sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
+  Submission.find().sort('-created').populate('user').exec(function(err, submissions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -119,7 +119,7 @@ exports.list = function(req, res) {
  */
 exports.myList = function(req, res) {
 
-  Submission.find({ 'user': req.user.id }).sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
+  Submission.find({ 'user': req.user.id }).sort('-created').populate('user').exec(function(err, submissions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -142,7 +142,7 @@ exports.submissionByID = function(req, res, next, id) {
     });
   }
 
-  Submission.findById(id).populate('user', 'displayName').exec(function (err, submission) {
+  Submission.findById(id).populate('user').exec(function (err, submission) {
     if (err) {
       return next(err);
     } else if (!submission) {

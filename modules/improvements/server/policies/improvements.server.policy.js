@@ -52,7 +52,7 @@ exports.isAllowed = function (req, res, next) {
   if (req.improvement && req.user && req.improvement.user && req.improvement.user.id === req.user.id) {
     return next();
   }
-  // Else statement is filler code
+  // Else statement allows a user to update improvement through liking it
   else {
     return next();
   }

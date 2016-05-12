@@ -80,6 +80,28 @@
           pageTitle: 'Improvement List'
         }
       })
+      .state('submissions.createUsercomment', {
+        url: '/:submissionId/addUsercomment',
+        templateUrl: 'modules/usercomments/client/views/form-usercomment.client.view.html',
+        controller: 'UsercommentsFromSubCrtlr',
+        controllerAs: 'vm',
+        resolve: {
+          submissionResolve: getSubmission,
+          usercommentsResolve: newUserComments
+        },
+        data: {
+          pageTitle: 'Add a comment'
+        }
+      })
+      .state('submissions.listUsercomments', {
+        url: '/usercomments',
+        templateUrl: 'modules/usercomments/client/views/list-usercomments.client.view.html',
+        controller: 'UsercommentsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Comments List'
+        }
+      })
       .state('submissions.view', {
         url: '/:submissionId',
         views: {
@@ -91,6 +113,11 @@
           'subImprovements@submissions.view': {
             templateUrl: 'modules/improvements/client/views/list-improvements.client.view.html',
             controller: 'ImprovementsListController',
+            controllerAs: 'vm'
+          },
+          'subUserComments@submissions.view': {
+            templateUrl: 'modules/usercomments/client/views/list-usercomments.client.view.html',
+            controller: 'UsercommentsListController',
             controllerAs: 'vm'
           }
         },
@@ -130,5 +157,19 @@
   function newImprovement(ImprovementsService) {
     return new ImprovementsService();
   }
-  
+
+  getUserComments.$inject = ['$stateParams', 'UsercommentsService'];
+
+  function getUserComments($stateParams, UsercommentsService) {
+    return UsercommentsService.get({
+      usercommentsId: $stateParams.usercommentsId
+    }).$promise;
+  }
+
+  newUserComments.$inject = ['UsercommentsService'];
+
+  function newUserComments(UsercommentsService) {
+    return new UsercommentsService();
+  }
+
 })();

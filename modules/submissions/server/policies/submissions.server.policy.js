@@ -34,7 +34,7 @@ exports.invokeRolesPolicies = function () {
       permissions: ['get', 'post']
     }, {
       resources: '/api/submissions/:submissionId',
-      permissions: ['get']
+      permissions: ['get', 'put']
     }, {
       resources: '/api/submissions/mySubmissions',
       permissions: ['get', 'post']
@@ -62,9 +62,6 @@ exports.isAllowed = function (req, res, next) {
 
   // If an Submission is being processed and the current user created it then allow any manipulation
   if (req.submission && req.user && req.submission.user && req.submission.user.id === req.user.id) {
-    return next();
-  }
-  else {
     return next();
   }
 

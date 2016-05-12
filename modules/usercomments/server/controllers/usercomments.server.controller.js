@@ -1,11 +1,11 @@
 'use strict';
-
 /**
  * Module dependencies.
  */
 var path = require('path'),
   mongoose = require('mongoose'),
   Usercomment = mongoose.model('Usercomment'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -14,7 +14,36 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
-  usercomment.user = req.user;
+  var user = req.user;
+  usercomment.user = user;
+  var likes = user._doc.likes;
+
+  // A new comment awards the user that posts it  5 points
+  if(user._doc.likes) {
+    likes = user._doc.likes + 5;
+  }
+  else {
+    likes = 5;
+  }
+
+  var id = user._id;
+  user = _.set(user, 'likes', likes);
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+    }
+  });
+
+  // Get the submissionID from the URL
+  var headers = req.headers.referer;
+  var headerArray = headers.split('/');
+
+  //Save the submission id to user comment
+  usercomment.submission = headerArray[4];
 
   usercomment.save(function(err) {
     if (err) {
@@ -80,8 +109,12 @@ exports.delete = function(req, res) {
 /**
  * List of Usercomments
  */
-exports.list = function(req, res) { 
-  Usercomment.find().sort('-created').populate('user', 'displayName').exec(function(err, usercomments) {
+exports.list = function(req, res) {
+  // Get the submissionID from the URL
+  var headers = req.headers.referer;
+  var headerArray = headers.split('/');
+  var submissionID = headerArray[4];
+  Usercomment.find({ 'submission': submissionID }).sort('-created').populate('user', 'displayName').exec(function(err, usercomments) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

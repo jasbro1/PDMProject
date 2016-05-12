@@ -49,7 +49,10 @@ var UserSchema = new Schema({
     type:Number,
     default:'0'
   },
-  likes: Number,
+  likes: {
+    type: Number,
+    default: 0
+  },
   email: {
     type: String,
     unique: true,

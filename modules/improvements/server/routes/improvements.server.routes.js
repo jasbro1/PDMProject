@@ -10,7 +10,6 @@ module.exports = function(app) {
   // Improvements Routes
   app.route('/api/improvements').all(improvementsPolicy.isAllowed)
     .get(improvements.list)
-    .put(improvements.update)
     .post(improvements.create);
 
   app.route('/api/improvements/:improvementId').all(improvementsPolicy.isAllowed)

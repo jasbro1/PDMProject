@@ -14,16 +14,37 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var improvement = new Improvement(req.body);
-  improvement.user = req.user;
-  improvement.likes=0;
+  var user = req.user;
+  improvement.user = user;
+  var likes = user._doc.likes;
+
+  // A new comment awards the user that posts it  5 points
+  if(user._doc.likes) {
+    likes = user._doc.likes + 10;
+  }
+  else {
+    likes = 10;
+  }
+  
+  user = _.set(user, 'likes', likes);
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+    }
+  });
 
   // Get the submissionID from the URL
   var headers = req.headers.referer;
   var headerArray = headers.split('/');
-  var submissionID = headerArray[4];
-
+  
   //Save submissionID to the improvement
-  improvement.submission = submissionID;
+  improvement.submission = headerArray[4];
+
+  improvement.likes = 0;
 
   improvement.save(function(err) {
     if (err) {

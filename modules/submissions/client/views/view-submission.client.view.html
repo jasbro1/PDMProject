@@ -23,20 +23,53 @@
   <p class="lead" data-ng-bind="vm.submission.content"></p>
   <div class="pull-right"
        data-ng-show="vm.submission.isCurrentUserOwner">
-    <a class="btn btn-primary"
+    <a class="btn btn-secondary"
        data-ui-sref="submissions.edit({ submissionId: vm.submission._id })">
-      <i class="glyphicon glyphicon-edit"></i>
+      <i class="glyphicon glyphicon-edit"
+         style="font-size: 30px;margin: 5px;display: block;"></i>
     </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
+    <a class="btn btn-secondary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"
+         style="font-size: 30px;margin: 5px;display: block;"></i>
     </a>
   </div>
-  <button class="btn btn-primary"
-          ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
-          data-ng-hide="vm.submission.isCurrentUserOwner">Create Improvement</button>
   <br><br>
 
-  <div class="row">
-    <div ui-view="subImprovements"></div>
-  </div>
+  <tabset>
+    <tab>
+      <tab-heading>
+        <span>Improvements</span>
+      </tab-heading>
+      <div>
+        <br>
+        <div class="row">
+        <button class="btn btn-primary" ng-if="authentication.user"
+                style="margin-left: 10px"
+                ui-sref="submissions.createImprovement({ submissionId: vm.submission._id })"
+                data-ng-hide="vm.submission.isCurrentUserOwner">Add Improvement
+        </button>
+
+          <div ui-view="subImprovements"></div>
+        </div>
+      </div>
+    </tab>
+
+    <tab>
+      <tab-heading>
+        <span>Comments</span>
+      </tab-heading>
+      <div>
+        <br>
+        <div class="row">
+          <button class="btn btn-primary" ng-if="authentication.user"
+                  style="margin-left: 10px"
+                  ui-sref="submissions.createUsercomment({ submissionId: vm.submission._id })">
+            Add Comment
+          </button>
+          <br><br>
+          <div ui-view="subUserComments"></div>
+        </div>
+      </div>
+    </tab>
+
 </section>

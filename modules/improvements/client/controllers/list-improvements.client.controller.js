@@ -11,14 +11,14 @@
     var vm = this;
 
     vm.improvements = ImprovementsService.query();
-    $scope.authentication = Authentication;
-    $scope.newVoteUser = $scope.authentication.user;
-    $scope.newVoteVal = 0;
+    // $scope.authentication = Authentication;
 
     vm.sortTerm = 'likes';                   // Sort by likes by default
     vm.sortBtnText = 'Sort by Popularity';  // The value to display in the sort button
     vm.sortReverse = true;                 // Sort in ascending order by default
     vm.sortMenuOpen = false;                // The sort menu starts off closed by default
+
+    // Defining functions used in the client side
     vm.incrementLikes = incrementLikes;
     vm.decrementLikes = decrementLikes;
     vm.shouldRender = shouldRender;

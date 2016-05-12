@@ -76,12 +76,12 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var improvement = req.improvement ;
-  var voteValue = req.improvement.likes - req.body.likes;
-  if (voteValue!=0) {
+  var voteValue = improvement.likes - req.body.likes;
+  if (voteValue!==0) {
     console.log('------ HERE:' + voteValue);
-    
+    improvement._doc.userWhoVoted.push(voteValue, req.body.user._id);
   }
-  else {
+  else{
     improvement = _.extend(improvement , req.body);
   }
 

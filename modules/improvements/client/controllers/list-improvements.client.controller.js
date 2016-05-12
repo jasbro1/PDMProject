@@ -61,8 +61,6 @@
 
     // Incrementing logic
     function incrementLikes(improvement, byX){
-      $scope.newVoteUser = authentication.user;
-      $scope.newVoteVal = byX;
       if(improvement.likes===null){
         improvement.likes=0;
       }

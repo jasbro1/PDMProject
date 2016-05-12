@@ -7,6 +7,19 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
+ * User Voting Schema
+ */
+var userWhoVotedSchema = new Schema({
+  voteValue: {
+    type: Number
+  },
+  userWhoVoted: {
+    type: Schema.ObjectId,
+    ref: 'User'
+  }
+});
+
+/**
  * Improvement Schema
  */
 var ImprovementSchema = new Schema({
@@ -28,10 +41,7 @@ var ImprovementSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  userWhoVoted: [{
-    theUser: Schema.ObjectId,
-    voteValue: Number
-  }],
+  userWhoVoted: [userWhoVotedSchema],
   likes: Number
 });
 

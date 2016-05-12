@@ -76,7 +76,7 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var improvement = req.improvement ;
-  var voteValue = req.body.likes - req.improvement.likes;
+  var voteValue = req.improvement.likes - req.body.likes;
   if (voteValue!=0) {
     console.log('------ HERE:' + voteValue);
     

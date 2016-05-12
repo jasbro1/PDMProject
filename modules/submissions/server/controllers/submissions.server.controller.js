@@ -35,6 +35,10 @@ exports.create = function(req, res) {
     } else {
     }
   });
+
+  submission.likes=0;
+  submission.user = user;
+
   submission.save(function(err) {
     if (err) {
       return res.status(400).send({

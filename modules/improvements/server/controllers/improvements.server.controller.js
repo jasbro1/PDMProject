@@ -115,7 +115,7 @@ exports.list = function(req, res) {
   var headers = req.headers.referer;
   var headerArray = headers.split('/');
   var submissionID = headerArray[4];
-  Improvement.find({ 'submission': submissionID }).sort('-created').populate('user', 'displayName').exec(function(err, improvements) {
+  Improvement.find({ 'submission': submissionID }).sort('-created').populate('user').exec(function(err, improvements) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -137,7 +137,7 @@ exports.improvementByID = function(req, res, next, id) {
     });
   }
 
-  Improvement.findById(id).populate('user', 'displayName').exec(function (err, improvement) {
+  Improvement.findById(id).populate('user').exec(function (err, improvement) {
     if (err) {
       return next(err);
     } else if (!improvement) {

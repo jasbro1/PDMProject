@@ -56,5 +56,18 @@
         vm.error = res.data.message;
       }
     }
+
+    // Calculate the rank of a submission's original poster (OP)
+    vm.range = function(points) {
+      var rank = [];
+      //if OP has earned enough points to obtain rank 1
+      if(points >= 10 ) {
+        // OPs will earn a rank every 20 points
+        for (var i = 0; i <= points; i += 20) {
+          rank.push(i);
+        }
+      }
+      return rank;
+    };
   }
 })();

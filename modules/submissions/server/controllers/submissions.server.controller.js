@@ -58,9 +58,17 @@ exports.read = function(req, res) {
   // convert mongoose document to JSON
   var submission = req.submission ? req.submission.toJSON() : {};
 
-  // Add a custom field to the Article, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
+  // Add custom fields to the Submission, for determining if the current User is the "owner" and if they are an admin.
+  // NOTE: These fields are NOT persisted to the database, since they don't exist in the Submission model.
   submission.isCurrentUserOwner = req.user && submission.user && submission.user._id.toString() === req.user._id.toString() ? true : false;
+
+  // Determine if the current user is an admin
+  submission.isAdmin = false;
+  for (var i = 0; i < req.user.roles.length; i++) {
+    if (req.user.roles[i] === 'admin') {
+      submission.isAdmin = true;
+    }
+  }
 
   res.jsonp(submission);
 };

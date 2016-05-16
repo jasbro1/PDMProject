@@ -22,7 +22,7 @@
   </small>
   <p class="lead" data-ng-bind="vm.submission.content"></p>
   <div class="pull-right"
-       data-ng-show="vm.submission.isCurrentUserOwner">
+       data-ng-show="vm.submission.isCurrentUserOwner || vm.submission.isAdmin">
     <a class="btn btn-secondary"
        data-ui-sref="submissions.edit({ submissionId: vm.submission._id })">
       <i class="glyphicon glyphicon-edit"

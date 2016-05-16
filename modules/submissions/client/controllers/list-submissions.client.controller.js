@@ -33,12 +33,20 @@
           vm.sortBtnText = 'Sort by Popularity';
           break;
         case 'date':
-          vm.sortTerm = 'date';
+          vm.sortTerm = 'created';
           vm.sortBtnText = 'Sort by Date';
+          break;
+        case 'title':
+          vm.sortTerm = 'title';
+          vm.sortBtnText = 'Sort by Title';
           break;
         case 'user':
           vm.sortTerm = 'user.displayName';
           vm.sortBtnText = 'Sort by User';
+          break;
+      case 'category':
+          vm.sortTerm = 'categories';
+          vm.sortBtnText = 'Sort by Category';
           break;
         default:
           vm.sortTerm = 'likes';

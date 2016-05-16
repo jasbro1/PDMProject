@@ -1,20 +1,10 @@
-/**
- * Created by Alex on 26/04/2016.
- */
+'use strict';
+
 (function () {
-  'use strict';
-
-
-  angular
-    .module('users')
-    .controller('showPointsController', showPointsController);
-
-  showPointsController.$inject = ['MyPointsService'];
-  function showPointsController(MyPointsService) {
-    var vms=this;
-    vms.users = MyPointsService.query();
-
-
-  }
-
+    angular.module('users').controller('showPointsController', ['MyPointsService',
+        function (MyPointsService) {
+            var vm = this;
+            vm.users = MyPointsService.query();
+        }
+    ]);
 })();

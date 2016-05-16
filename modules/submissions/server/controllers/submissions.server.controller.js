@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Submission = mongoose.model('Submission'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -15,19 +16,17 @@ var path = require('path'),
  */
 exports.create = function(req, res) {
   var submission = new Submission(req.body);
-  var user = req.user;
-  var likes = user._doc.likes;
-
-  // A new comment awards the user that posts it  5 points
-  if(user._doc.likes) {
-    likes = user._doc.likes + 20;
+  submission.user = req.user;
+  var user=req.user;
+  var points = user._doc.points;
+  if(user._doc.points) {
+    points = user._doc.points + 20;
   }
   else {
-    likes = 20;
+    points=20;
   }
-  
-  user = _.set(user, 'likes', likes);
-
+  var id = user._id;
+  user = _.set(user, 'points', points);
   user.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -108,7 +107,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) {
 
-  Submission.find().sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
+  Submission.find().sort('-created').populate('user').exec(function(err, submissions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -124,7 +123,7 @@ exports.list = function(req, res) {
  */
 exports.myList = function(req, res) {
 
-  Submission.find({ 'user': req.user.id }).sort('-created').populate('user', 'displayName').exec(function(err, submissions) {
+  Submission.find({ 'user': req.user.id }).sort('-created').populate('user').exec(function(err, submissions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -147,7 +146,7 @@ exports.submissionByID = function(req, res, next, id) {
     });
   }
 
-  Submission.findById(id).populate('user', 'displayName').exec(function (err, submission) {
+  Submission.findById(id).populate('user').exec(function (err, submission) {
     if (err) {
       return next(err);
     } else if (!submission) {

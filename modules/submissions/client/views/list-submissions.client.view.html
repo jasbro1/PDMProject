@@ -96,15 +96,28 @@
           <h4 data-ng-bind="submission.title"></h4>
         <span class="label label-primary pull-right"
               data-ng-bind="submission.categories"></span>
-          <small>
-            By
-          <span data-ng-if="submission.user"
-                data-ng-bind="submission.user.displayName"></span>
-            <span data-ng-if="!submission.user">Deleted User</span>
-            <br>
-            <span data-ng-bind="submission.created | date:'mediumDate'"></span>
-          </small>
-        </div>
+        <!-- post subtitle -->
+        <small>
+          <span data-ng-if="submission.user">
+            <ul id="user_submissions" style="list-style-type:none; display:inline; position:relative; left: -40px; margin-right: -40px;">
+              By
+              <!-- User's display name -->
+              <li data-ng-bind="submission.user.displayName" style="display:inline"></li>
+              <!-- points in stars -->
+              <li ng-repeat="r in vm.range(submission.user.points)" class="glyphicon glyphicon-star"
+                  style="font-size: 10px; margin: 0px; display:inline;"></li>
+                   (
+              <!-- User's points -->
+              <li data-ng-if="submission.user"
+                  data-ng-bind="submission.user.points" style="display:inline"> </li> pts
+               )
+            </ul>
+          </span>
+          <!-- User does not exist -->
+          <span data-ng-if="!submission.user">Deleted User</span>
+          on
+          <span data-ng-bind="submission.created | date:'mediumDate'"></span>
+        </small>
       </div>
 
       <!-- Post body section -->

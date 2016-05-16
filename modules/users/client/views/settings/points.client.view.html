@@ -1,6 +1,6 @@
 <section class="row" >
 <div data-ng-repeat="user in vms.users">
-  Your current Points:
+  Your current Points: {{user.points}}
   <!-- Progress bar -->
         <div id="pointProgressBar" class="progress">
           <!-- Dynamically updates using $scope.progress from the controller -->

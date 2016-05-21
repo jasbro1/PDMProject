@@ -50,7 +50,14 @@ var SubmissionSchema = new Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User'
-  }
+  },
+  hasVoted: [{
+    user: {
+      type: Schema.ObjectId, 
+      ref: 'User'
+    },
+    value: Number
+  }]
 });
 
 mongoose.model('Submission', SubmissionSchema);

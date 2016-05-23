@@ -17,17 +17,17 @@ exports.create = function(req, res) {
   var improvement = new Improvement(req.body);
   var user = req.user;
   improvement.user = user;
-  var likes = user._doc.likes;
+  var points = user._doc.points;
 
   // A new comment awards the user that posts it  5 points
-  if(user._doc.likes) {
-    likes = user._doc.likes + 10;
+  if(user._doc.points) {
+    points = user._doc.points + 10;
   }
   else {
-    likes = 10;
+    points= 10;
   }
   
-  user = _.set(user, 'likes', likes);
+  user = _.set(user, 'points', points);
 
   user.save(function (err) {
     if (err) {

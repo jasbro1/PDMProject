@@ -5,6 +5,7 @@
   <div class="col-md-12">
     <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
       <fieldset>
+        <!-- First name -->
         <div class="form-group" show-errors>
           <label for="firstName">First Name</label>
           <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required />
@@ -12,6 +13,7 @@
             <p class="help-block error-text" ng-message="required">First name is required.</p>
           </div>
         </div>
+        <!-- Last name -->
         <div class="form-group" show-errors>
           <label for="lastName">Last Name</label>
           <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required />
@@ -19,6 +21,12 @@
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
         </div>
+        <!-- Password -->
+        <div class="form-group" show-errors>
+          <label for="password">Password</label>
+          <input type="text" id="password" name="password" class="form-control" ng-model="user.password" placeholder="Password" />
+        </div>
+        <!-- Roles -->
         <div class="form-group" show-errors>
           <label class="control-label" for="roles">Roles</label>
           <div class="controls">

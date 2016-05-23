@@ -10,9 +10,20 @@
       Posted on
       <span data-ng-bind="vm.submission.created | date:'mediumDate'"></span>
       by
-      <span data-ng-if="vm.submission.user"
-            data-ng-bind="vm.submission.user.displayName"></span>
-      <span data-ng-if="!vm.submission.user">Deleted User</span>
+      <span data-ng-if="vm.submission.user">
+            <ul id="user_submissions" style="list-style-type:none; display:inline; position:relative; left: -40px">
+              <!-- User's display name -->
+              <li data-ng-bind="vm.submission.user.displayName" style="display:inline"></li>
+              <!-- points in stars -->
+              <li ng-repeat="r in vm.range(vm.submission.user.points)" class="glyphicon glyphicon-star"
+                  style="font-size: 10px; margin: 0px; display:inline;"></li>
+              (
+              <!-- User's points -->
+              <li data-ng-if="vm.submission.user"
+                  data-ng-bind="vm.submission.user.points" style="display:inline"> </li> pts
+              )
+            </ul>
+          </span>
     </em>
   </small>
   <small class="list-group-item-text">
@@ -22,7 +33,7 @@
   </small>
   <p class="lead" data-ng-bind="vm.submission.content"></p>
   <div class="pull-right"
-       data-ng-show="vm.submission.isCurrentUserOwner">
+       data-ng-show="vm.submission.isCurrentUserOwner || vm.submission.isAdmin">
     <a class="btn btn-secondary"
        data-ui-sref="submissions.edit({ submissionId: vm.submission._id })">
       <i class="glyphicon glyphicon-edit"

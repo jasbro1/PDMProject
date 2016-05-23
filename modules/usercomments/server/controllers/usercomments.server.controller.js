@@ -16,18 +16,18 @@ exports.create = function(req, res) {
   var usercomment = new Usercomment(req.body);
   var user = req.user;
   usercomment.user = user;
-  var likes = user._doc.likes;
+  var points = user._doc.points;
 
   // A new comment awards the user that posts it  5 points
-  if(user._doc.likes) {
-    likes = user._doc.likes + 5;
+  if(user._doc.points) {
+    points = user._doc.points + 5;
   }
   else {
-    likes = 5;
+    points = 5;
   }
 
   var id = user._id;
-  user = _.set(user, 'likes', likes);
+  user = _.set(user, 'points', points);
 
   user.save(function (err) {
     if (err) {
@@ -114,7 +114,7 @@ exports.list = function(req, res) {
   var headers = req.headers.referer;
   var headerArray = headers.split('/');
   var submissionID = headerArray[4];
-  Usercomment.find({ 'submission': submissionID }).sort('-created').populate('user', 'displayName').exec(function(err, usercomments) {
+  Usercomment.find({ 'submission': submissionID }).sort('-created').populate('user').exec(function(err, usercomments) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -136,7 +136,7 @@ exports.usercommentByID = function(req, res, next, id) {
     });
   }
 
-  Usercomment.findById(id).populate('user', 'displayName').exec(function (err, usercomment) {
+  Usercomment.findById(id).populate('user').exec(function (err, usercomment) {
     if (err) {
       return next(err);
     } else if (!usercomment) {

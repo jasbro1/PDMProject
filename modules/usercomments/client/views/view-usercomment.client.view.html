@@ -17,8 +17,19 @@
       Posted on
       <span data-ng-bind="vm.usercomment.created | date:'mediumDate'"></span>
       by
-      <span data-ng-if="vm.usercomment.user"
-            data-ng-bind="vm.usercomment.user.displayName"></span>
+      <span data-ng-if="vm.usercomment.user">
+          <ul id="user_comments" style="list-style-type:none; display:inline; position:relative; left: -40px">
+            <!-- User's display name -->
+            <li data-ng-bind="vm.usercomment.user.displayName" style="display:inline"></li>
+            <!-- points in stars -->
+            <li ng-repeat="r in vm.range(vm.usercomment.user.points)" class="glyphicon glyphicon-star"
+                style="font-size: 10px; margin: 0px; display:inline;"></li>
+            (
+            <!-- User's points -->
+            <li data-ng-bind="vm.usercomment.user.points" style="display:inline"> </li> pts
+            )
+          </ul>
+      </span>
       <span data-ng-if="!vm.usercomment.user">Deleted User</span>
     </em>
   </small>

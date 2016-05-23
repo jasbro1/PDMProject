@@ -33,12 +33,20 @@
           vm.sortBtnText = 'Sort by Popularity';
           break;
         case 'date':
-          vm.sortTerm = 'date';
+          vm.sortTerm = 'created';
           vm.sortBtnText = 'Sort by Date';
+          break;
+        case 'title':
+          vm.sortTerm = 'title';
+          vm.sortBtnText = 'Sort by Title';
           break;
         case 'user':
           vm.sortTerm = 'user.displayName';
           vm.sortBtnText = 'Sort by User';
+          break;
+      case 'category':
+          vm.sortTerm = 'categories';
+          vm.sortBtnText = 'Sort by Category';
           break;
         default:
           vm.sortTerm = 'likes';
@@ -86,5 +94,18 @@
     function shouldRender(user) {
       return !!user;
     }
+
+    // Calculate the rank of a submission's original poster (OP)
+    vm.range = function(points) {
+      var rank = [];
+      //if OP has earned enough points to obtain rank 1
+      if(points >= 10 ) {
+        // OPs will earn a rank every 20 points
+        for (var i = 0; i <= points; i += 20) {
+          rank.push(i);
+        }
+      }
+      return rank;
+    };
   }
 })();

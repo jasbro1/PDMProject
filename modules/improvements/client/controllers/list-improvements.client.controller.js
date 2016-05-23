@@ -5,9 +5,11 @@
     .module('improvements')
     .controller('ImprovementsListController', ImprovementsListController);
 
-  ImprovementsListController.$inject = ['$state', 'ImprovementsService'];
+  ImprovementsListController.$inject = ['$scope', '$state',
+    '$Authentication', 'ImprovementsService'];
 
-  function ImprovementsListController($state, ImprovementsService) {
+  function ImprovementsListController($scope, $state,
+                                      Authentication, ImprovementsService) {
     var vm = this;
 
     vm.improvements = ImprovementsService.query();
@@ -76,8 +78,16 @@
       }
       improvement.$update(successCallback, errorCallback);
     }
+    
+    // Check vote
+    function checkVote(improvement, user) {
+      if(improvement.userWhoVoted.containDeep({ userWhoVoted: user._id })) {
+        console.log('----------containDeep');
+      }
+    }
 
     function successCallback(res) {
+      
     }
 
     function errorCallback(res) {
@@ -93,7 +103,7 @@
     vm.range = function(points) {
       var rank = [];
       //if OP has earned enough points to obtain rank 1
-      if(points >= 10 ) {
+      if(points>=10) {
         // OPs will earn a rank every 20 points
         for (var i = 0; i <= points; i += 20) {
           rank.push(i);

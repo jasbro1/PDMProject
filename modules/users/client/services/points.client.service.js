@@ -15,8 +15,8 @@
       userId: '@_id'
     },{
       update:{
-      method: 'PUT'
-        }
-      });
-    }
+        method: 'PUT'
+      }
+    });
+  }
 })();

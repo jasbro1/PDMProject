@@ -6,7 +6,6 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Improvement = mongoose.model('Improvement'),
-  UserWhoVoted = mongoose.model('UserWhoVoted'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -77,20 +76,8 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var improvement = req.improvement ;
-  var voteValue = req.body.likes - improvement.likes;
 
-  // If the update call is because a user voted on something
-  if (voteValue!==0) {
-    var userWhoVoted = new UserWhoVoted();
-    userWhoVoted.voteValue = voteValue;
-    userWhoVoted.userWhoVoted = req.body.user._id;
-    console.log('------ VoteValue: ' + voteValue);
-    improvement._doc.userWhoVoted.push(userWhoVoted);
-  }
-  // Else it must be because the user is editing their improvement
-  else{
-    improvement = _.extend(improvement , req.body);
-  }
+  improvement = _.extend(improvement , req.body);
 
   improvement.save(function(err) {
     if (err) {

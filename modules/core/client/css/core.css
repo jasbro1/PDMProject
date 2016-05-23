@@ -43,7 +43,7 @@ a:hover .header-profile-image {
 }
 
 /* Home page styles */
-#descContainer {
+.descContainer {
     padding-top: 40px;
     padding-bottom: 30px;
 }

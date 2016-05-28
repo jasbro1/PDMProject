@@ -1,14 +1,12 @@
 <section class="row" >
-<div data-ng-repeat="user in vms.users">
   Your current Points: {{user.points}}
   <!-- Progress bar -->
         <div id="pointProgressBar" class="progress">
           <!-- Dynamically updates using $scope.progress from the controller -->
           <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
-                             aria-valuemax="100" style="width:{{user.points}}%">
+                             aria-valuemax="100" style="width:{{user.points}}%; max-width:100%">
             <!-- Display numeric value inside the progress bar -->
            <strong><span> {{user.points}}% </span></strong>
           </div>
         </div>
-  </div>
 </section>

@@ -30,19 +30,7 @@ var SubmissionSchema = new Schema({
     required: 'Please include a catagory with your submission',
     trim: true
   },
-
-  /**
-   * TODO: Remove comments from the submission schema and just add a
-   * TODO: submissionID to each usercomment
-   */
-
-  comments: [{
-    type: Schema.ObjectId,
-    ref: 'UserComments'
-  }],
-
   likes: Number,
-
   created: {
     type: Date,
     default: Date.now

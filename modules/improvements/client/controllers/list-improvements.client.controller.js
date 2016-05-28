@@ -5,15 +5,12 @@
     .module('improvements')
     .controller('ImprovementsListController', ImprovementsListController);
 
-  ImprovementsListController.$inject = ['$scope', '$state',
-    '$Authentication', 'ImprovementsService'];
+  ImprovementsListController.$inject = ['$state', 'ImprovementsService'];
 
-  function ImprovementsListController($scope, $state,
-                                      Authentication, ImprovementsService) {
+  function ImprovementsListController($state, ImprovementsService) {
     var vm = this;
 
     vm.improvements = ImprovementsService.query();
-    $scope.authentication = Authentication;
 
     vm.sortTerm = 'likes';                   // Sort by likes by default
     vm.sortBtnText = 'Sort by Popularity';  // The value to display in the sort button

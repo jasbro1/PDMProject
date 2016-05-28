@@ -99,15 +99,16 @@
         <!-- post subtitle -->
         <small>
           <span data-ng-if="submission.user">
-            <ul id="user_submissions" style="list-style-type:none; display:inline; position:relative; left: -40px; margin-right: -40px;">
+            <ul id="user_submissions" style="list-style-type:none; display:inline; position:relative; padding-left:0px; margin-left:10px">
               By
               <!-- User's display name -->
               <li data-ng-bind="submission.user.displayName" style="display:inline"></li>
               <!-- points in stars -->
-              <li ng-repeat="r in vm.range(submission.user.points)" class="glyphicon glyphicon-star"
-                  style="font-size: 10px; margin: 0px; display:inline;"></li>
-                   (
+              <div ng-repeat="r in vm.range(submission.user.points)" class="glyphicon glyphicon-star"
+                  style="font-size: 10px; margin: 0px; display:inline; word-wrap: break-word;"></div>
+
               <!-- User's points -->
+              (
               <li data-ng-if="submission.user"
                   data-ng-bind="submission.user.points" style="display:inline"> </li> pts
                )

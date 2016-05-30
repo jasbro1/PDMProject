@@ -1,4 +1,5 @@
 <section class="row" >
+<div data-ng-repeat="user in vm.users|limitTo:1">
   Your current Points: {{user.points}}
   <!-- Progress bar -->
         <div id="pointProgressBar" class="progress">
@@ -9,4 +10,5 @@
            <strong><span> {{user.points}}% </span></strong>
           </div>
         </div>
+  </div>
 </section>

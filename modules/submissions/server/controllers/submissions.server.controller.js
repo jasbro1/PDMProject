@@ -17,6 +17,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var submission = new Submission(req.body);
   submission.user = req.user;
+  submission.likes=0;
   var user=req.user;
   var points = user._doc.points;
   if(user._doc.points) {

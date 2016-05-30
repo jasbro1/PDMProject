@@ -17,6 +17,7 @@ exports.create = function(req, res) {
   var user = req.user;
   improvement.user = user;
   var points = user._doc.points;
+  improvement.likes=0;
 
   // A new comment awards the user that posts it  5 points
   if(user._doc.points) {
@@ -25,7 +26,7 @@ exports.create = function(req, res) {
   else {
     points= 10;
   }
-  
+
   user = _.set(user, 'points', points);
 
   user.save(function (err) {

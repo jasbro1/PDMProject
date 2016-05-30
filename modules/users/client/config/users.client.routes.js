@@ -77,7 +77,7 @@ angular.module('users').config(['$stateProvider',
         url: '/myPoints',
         templateUrl: 'modules/users/client/views/settings/points.client.view.html',
         controller: 'showPointsController',
-        controllerAs: 'vm',
+        controllerAs: 'vms',
         data: {
           pageTitle: 'My Points'
         }
